@@ -20,6 +20,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		 	/WEB-INF/classes/spring_config/helpdesk-application-context.xml
+		 	/WEB-INF/classes/spring_config/helpdesk-persistance-config.xml
+		 	/WEB-INF/classes/spring_config/helpdesk-service-config.xml
         </param-value>
 	</context-param>
 	

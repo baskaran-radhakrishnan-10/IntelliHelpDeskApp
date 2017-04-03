@@ -3,13 +3,12 @@
 
 <tiles-definitions>
   
-  <!-- <definition name="home.page.template" template="/WEB-INF/views/jsp/layouts/home_page_template.jsp">
+  <definition name="home.page.template" template="/WEB-INF/views/jsp/originalTheme/layouts/skelton_page.jsp">
     <put-attribute name="title" value="" />
-    <put-attribute name="header_menu" type="template" value="/WEB-INF/views/jsp/layouts/header_menu.jsp" />
-    <put-attribute name="left_menu" type="template" value="/WEB-INF/views/jsp/layouts/left_menu.jsp" />
+    <put-attribute name="header_menu" type="template" value="/WEB-INF/views/jsp/originalTheme/layouts/header.jsp" />
     <put-attribute name="body_content" type="template" value="" />
-    <put-attribute name="footer_content" type="template" value="/WEB-INF/views/jsp/layouts/footer.jsp" />
-  </definition> -->
+    <put-attribute name="left_menu" type="template" value="/WEB-INF/views/jsp/originalTheme/layouts/left_menu.jsp" />
+  </definition>
   
   <definition name="login.page.template" template="/WEB-INF/views/jsp/layouts/login_page_template.jsp">
     <put-attribute name="title" value="" />
@@ -23,9 +22,14 @@
 	<put-attribute name="body" value="/WEB-INF/views/jsp/pages/loginpage.jsp" />
   </definition>
   
-   <!-- <definition name="homepage" extends="home.page.template">
+   <definition name="homepage" extends="home.page.template">
 	<put-attribute name="title" value="Home Page"></put-attribute>
-	<put-attribute name="body_content" value="/WEB-INF/views/jsp/pages/home.jsp" />
-  </definition> -->
+	<put-attribute name="body_content" value="/WEB-INF/views/jsp/originalTheme/pages/helpdesk_home.jsp" />
+  </definition>
+  
+  <definition name="chatpage" extends="home.page.template">
+	<put-attribute name="title" value="Chat Window Page"></put-attribute>
+	<put-attribute name="body_content" value="/WEB-INF/views/jsp/originalTheme/pages/chat_window.jsp" />
+  </definition>
   
 </tiles-definitions>

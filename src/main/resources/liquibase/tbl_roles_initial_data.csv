@@ -1,0 +1,4 @@
+gkey,role_desc,role_name,created_by,modified_by
+1,Super Admin,ROLE_SUPER_ADMIN,null,null
+2,Admin,ROLE_ADMIN,null,null
+3,Normal User,ROLE_NORMAL_USER,null,null

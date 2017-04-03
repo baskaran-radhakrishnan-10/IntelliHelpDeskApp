@@ -5,6 +5,38 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
     	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    	
+     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/classes/properties/database.properties</value>
+				<value>/WEB-INF/classes/properties/security.properties</value>
+			</list>
+		</property>
+	</bean>	
+	
+	<context:component-scan base-package="com.helpdesk.controller"/>
+    <context:component-scan base-package="com.helpdesk.dao.api.impl"/>
+    <context:component-scan base-package="com.helpdesk.service.api.impl"/>	
+    
+    <bean id="cryptoService" class="com.equiniti.security.crypto.EncryptionDecryption">
+		<constructor-arg value="${application.pass-phrase}" />
+	</bean>
+	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${hibernate.connection.driver_class}" />
+		<property name="jdbcUrl" value="${hibernate.connection.url}" />
+		<property name="user" value="${hibernate.connection.username}" />
+		<property name="password" value="${hibernate.connection.password}" />
+		<property name="minPoolSize" value="8" />
+		<property name="maxPoolSize" value="16" />
+		<property name="maxIdleTime" value="3600" />
+	</bean>
+	
+	<bean id="LiquibaseUpdater" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="/WEB-INF/classes/liquibase/db-changelog.xml" />
+    </bean>
 			
 	<!-- <context:component-scan base-package="com.equiniti.qa_report.controller"/>
     <context:component-scan base-package="com.equiniti.qa_report.dao.api.impl"/>

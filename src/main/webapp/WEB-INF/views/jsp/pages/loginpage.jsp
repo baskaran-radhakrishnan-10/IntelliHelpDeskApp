@@ -84,7 +84,7 @@
 				<div class="panel-body text-center">
 					<img src="${equinitiLogo}" alt="Equiniti Logo">
 				<!-- 	<h1 class="atomic-symbol" style="font-size: 8em !important;">Logo</h1> -->
-					<p class="atomic-mass"style="margin-top: 1em;">QA REPORT</p>
+					<p class="atomic-mass"style="margin-top: 1em;">HELP DESK APP</p>
 					<!-- <p class="element-name">Web App</p> -->
 					<div class="form-group form-animate-text" style="margin-top: 40px !important;">
 						<form:input path="userId" id="userIdField" type="text"	class="form-text" required="true" autocomplete="off" />

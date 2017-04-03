@@ -29,6 +29,10 @@
 		</property>
 	</bean>
 	
+	<mvc:interceptors>
+		<bean class="com.helpdesk.web.interceptor.SecurityInterceptor" />
+	</mvc:interceptors>
+	
 	<mvc:default-servlet-handler/>
 	
 </beans>

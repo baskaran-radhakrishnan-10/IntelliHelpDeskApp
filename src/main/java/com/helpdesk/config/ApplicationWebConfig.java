@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({ "com.helpdesk.web.controller", "com.helpdesk.exception" })
+@ComponentScan({ "com.helpdesk.web.controller"})
 public class ApplicationWebConfig extends WebMvcConfigurerAdapter {
 
 	@Override

@@ -1,0 +1,5 @@
+gkey,resource_module,resource_name,resource_url,resource_module_icon,created_by,modified_by
+1,dashboard_li,Dashboard,dashboard,fa-tachometer,null,null
+2,rbac_li,Manage Users,rbac/showUser,fa-user-secret,null,null
+3,rbac_li,Manage Roles,rbac/showRoles,fa-user-secret,null,null
+4,rbac_li,Manage Password,rbac/managePassword,fa-user-secret,null,null
