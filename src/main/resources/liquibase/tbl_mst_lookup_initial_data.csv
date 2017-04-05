@@ -1,35 +1,35 @@
-"LOOKUP_TYPE","LOOKUP_CODE","LOOKUP_VALUE","ACTIVEYN"
-"EQI_ROLE","1","Managing Director","Y"
-"EQI_ROLE","2","General Manager","Y"
-"EQI_ROLE","3","Department Head","Y"
-"EQI_ROLE","4","Manager","Y"
-"EQI_ROLE","5","Team Lead","Y"
-"EQI_ROLE","6","Software Engineer","Y"
-"EQI_ROLE","7","Senior Software Engineer","Y"
-"EQI_ROLE","8","Test Engineer","Y"
-"EQI_ROLE","9","Senior Test Engineer","Y"
-"EQI_ROLE","10","Systems Analyst","Y"
-"EQI_ROLE","11","Senior Systems Analyst","Y"
-"EQI_ROLE","12","Trainee","Y"
-"EQI_SKILLSET","1","Management","Y"
-"EQI_SKILLSET","2","Java","Y"
-"EQI_SKILLSET","3","ASP.NET","Y"
-"EQI_SKILLSET","4","PL SQL","Y"
-"EQI_SKILLSET","5","PRO C","Y"
-"EQI_SKILLSET","6","MVC","Y"
-"EQI_SKILLSET","7","C#","Y"
-"EQI_SKILLSET","8","SQL Server","Y"
-"EQI_SKILLSET","9","AX","Y"
-"EQI_SKILLSET","10","CRM","Y"
-"EQI_SKILLSET","11","Visual Basic","Y"
-"EQI_SKILLSET","12","Visual Foxpro","Y"
-"EQI_SKILLSET","13","QA Automation","Y"
-"EQI_SKILLSET","14","CUID","Y"
-"EQI_SKILLSET","15","Selenium","Y"
-"EQI_PROJECT","1","Mangement","Y"
-"EQI_PROJECT","2","Live System","Y"
-"EQI_PROJECT","3","Pancredit","Y"
-"EQI_PROJECT","4","Charter UK","Y"
-"EQI_PROJECT","5","HRP","Y"
-"EQI_PROJECT","6","PDC","Y"
-"EQI_PROJECT","7","Support","Y"
+gkey,LOOKUP_TYPE,LOOKUP_CODE,LOOKUP_VALUE,ACTIVEYN
+1,EQI_ROLE,1,Managing Director,Y
+2,EQI_ROLE,2,General Manager,Y
+3,EQI_ROLE,3,Department Head,Y
+4,EQI_ROLE,4,Manager,Y
+5,EQI_ROLE,5,Team Lead,Y
+6,EQI_ROLE,6,Software Engineer,Y
+7,EQI_ROLE,7,Senior Software Engineer,Y
+8,EQI_ROLE,8,Test Engineer,Y
+9,EQI_ROLE,9,Senior Test Engineer,Y
+10,EQI_ROLE,10,Systems Analyst,Y
+11,EQI_ROLE,11,Senior Systems Analyst,Y
+12,EQI_ROLE,12,Trainee,Y
+13,EQI_SKILLSET,1,Management,Y
+14,EQI_SKILLSET,2,Java,Y
+15,EQI_SKILLSET,3,ASP.NET,Y
+16,EQI_SKILLSET,4,PL SQL,Y
+17,EQI_SKILLSET,5,PRO C,Y
+18,EQI_SKILLSET,6,MVC,Y
+19,EQI_SKILLSET,7,C#,Y
+20,EQI_SKILLSET,8,SQL Server,Y
+21,EQI_SKILLSET,9,AX,Y
+22,EQI_SKILLSET,10,CRM,Y
+23,EQI_SKILLSET,11,Visual Basic,Y
+24,EQI_SKILLSET,12,Visual Foxpro,Y
+25,EQI_SKILLSET,13,QA Automation,Y
+26,EQI_SKILLSET,14,CUID,Y
+27,EQI_SKILLSET,15,Selenium,Y
+28,EQI_PROJECT,1,Mangement,Y
+29,EQI_PROJECT,2,Live System,Y
+30,EQI_PROJECT,3,Pancredit,Y
+31,EQI_PROJECT,4,Charter UK,Y
+32,EQI_PROJECT,5,HRP,Y
+33,EQI_PROJECT,6,PDC,Y
+34,EQI_PROJECT,7,Support,Y

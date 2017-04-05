@@ -2,16 +2,11 @@ package com.helpdesk.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.equiniti.persistance_api.audit.api.IAuditLog;
 
 @Entity
 @Table(name = "tbl_emp_leave_details")
-public class EmployeeLeave extends GeneralEntity implements IAuditLog{
+public class EmployeeLeave extends GeneralEntity {
 
 	private static final long serialVersionUID = -1968065884219305808L;
 	

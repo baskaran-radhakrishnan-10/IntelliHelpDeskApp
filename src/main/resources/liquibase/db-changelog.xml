@@ -9,4 +9,14 @@
     
     <!-- <include file="db-table-tbl_role_resource-changelog.xml" relativeToChangelogFile="true" /> -->
     
+    <include file="db-table-tbl_banding-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_emp_leave_details-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_employee-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_key_refer-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_mst_lookup-changelog.xml" relativeToChangelogFile="true" />
+    
 </databaseChangeLog>
