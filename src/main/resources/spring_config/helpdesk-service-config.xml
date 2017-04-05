@@ -13,4 +13,8 @@
 		<property name="loginDAO" ref="loginDAO"/>
 	</bean>
 	
+	<bean class="com.helpdesk.service.api.impl.ChatHistoryServiceImpl" id="chatHistoryService" >
+		<property name="chatHistoryDAO" ref="chatHistoryDAO"/>
+	</bean>
+	
 </beans>

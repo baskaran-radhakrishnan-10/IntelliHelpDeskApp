@@ -3,15 +3,12 @@ package com.helpdesk.dao.api.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Service;
-
 import com.equiniti.exception.api.exception.DaoException;
 import com.equiniti.persistance_api.hibernate.api.AbstractHibernateDAOAPI;
 import com.helpdesk.dao.api.RoleResourceDAO;
 import com.helpdesk.entity.RolesResources;
 
 
-@Service("roleResourcesDAO")
 public class RoleResourcesDAOImpl implements RoleResourceDAO {
 
 	private AbstractHibernateDAOAPI<RolesResources> abstractHibernateDAOAPI;

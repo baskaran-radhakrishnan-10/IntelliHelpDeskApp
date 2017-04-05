@@ -6,42 +6,35 @@
 <spring:url value="/resources/originalTheme/css/chat/normalize.css" var="NormalizeCss" />
 <spring:url value="/resources/originalTheme/css/chat/style.css"	var="StyleCss" />
 <spring:url value="/resources/originalTheme/js/custom/custom_chat.js"	var="customChatJs" />
+<spring:url value="/resources/originalTheme/js/custom/custom_chatHistory.js"	var="customChatHistoryJs" />
+<spring:url value="/resources/originalTheme/js/common/common.js"	var="commonJs" />
+
 
 
 <link rel="stylesheet" href="${NormalizeCss}">
-<!-- <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'> -->
-<!-- <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'> -->
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
 <link rel="stylesheet" href="${StyleCss}">
 
-
-
-
 <div class="chat">
-	<div class="chat-title">
-		<h1>Fabio Ottaviani</h1>
-		<h2>Supah</h2>
+	<div class="chat-title" style="">
+		<h1 style="text-transform: uppercase;color: rgba(255, 255, 255, 0.68);"><%=session.getAttribute("USER_NAME")%></h1>
+		<h2 style="text-transform: lowercase;color: rgb(255, 255, 255);"><%=session.getAttribute("USER_ID")%></h2>
 		<figure class="avatar">
-			<img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" />
+			<img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg">
 		</figure>
 	</div>
 	<div class="messages">
 		<div class="messages-content"></div>
 	</div>
 	<div class="message-box">
-		<textarea type="text" class="message-input"
-			placeholder="Type message..."></textarea>
-		<button type="submit" class="message-submit">Send</button>
+		<textarea type="text" class="message-input" placeholder="Type message..."></textarea>
+		<button type="submit" id="send_chat_id" class="message-submit" style="height: 44px;width: 103px;">Send</button>
 	</div>
 </div>
 
 <div class="bg"></div>
 
-	<!--<script	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-	<script	src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script> 
-	-->
-	
 <script	src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script> 	
-<script src="${customChatJs}"></script>
-
-
+<%-- <script src="${customChatJs}"></script> --%>
+<script src="${customChatHistoryJs}"></script>
+<script src="${commonJs}"></script>
