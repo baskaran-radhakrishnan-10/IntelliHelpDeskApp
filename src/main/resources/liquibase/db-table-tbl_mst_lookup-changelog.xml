@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd" >
+	
+	<changeSet author="baskaran radhakrishnan" id="alter_tbl_mst_lookup_changeset"	runOnChange="true">
+		<addDefaultValue columnName="ACTIVEYN" columnDataType="char" defaultValueChar="Y" tableName="tbl_mst_lookup" />
+	</changeSet>
+	
+	<changeSet author="baskaran radhakrishnan" id="insert_tbl_users_changeset"	runOnChange="true">
+		<loadData file="/WEB-INF/classes/liquibase/tbl_mst_lookup_initial_data.csv" tableName="tbl_mst_lookup"/>
+	</changeSet>
+	
+</databaseChangeLog>	
