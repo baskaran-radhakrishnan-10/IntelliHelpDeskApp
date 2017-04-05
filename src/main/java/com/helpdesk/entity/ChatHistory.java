@@ -35,9 +35,8 @@ public class ChatHistory {
 	@Column(name = "system_answer")
 	private  String sysAnswer;
 
-	@OneToOne
-	@JoinColumn(name = "user")
-	private  User user;
+	@Column(name = "user_id")
+	private  Integer userId;
 
 	public int getGkey() {
 		return gkey;
@@ -79,12 +78,12 @@ public class ChatHistory {
 		this.sysAnswer = sysAnswer;
 	}
 
-	public User getUser() {
-		return user;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-	
+
 }

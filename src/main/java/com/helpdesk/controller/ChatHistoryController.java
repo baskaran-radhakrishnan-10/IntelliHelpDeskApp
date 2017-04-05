@@ -85,9 +85,9 @@ public class ChatHistoryController {
 	private ChatHistory populateEntityFromMap(Map<String,Object> mapObject){
 		ChatHistory entity=objMapper.convertValue(CommonUtil.removeTransientObject(mapObject), ChatHistory.class);
 		if(null != entity){
-			if(null == entity.getUser()){
+			if(null == entity.getUserId()){
 				User user = (User) session.getAttribute(ApplicationConstants.USER_OBJ);
-				entity.setUser(user);
+				entity.setUserId(user.getGkey());
 			}
 		}
 		return entity;

@@ -127,11 +127,11 @@ public class User extends GeneralEntity implements IAuditLog{
 		return this.toString();
 	}
 
-	@Override
+	/*@Override
 	public String toString(){
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("User Full Name : ").append(userFullName).append(" -- ").append("User Id : ").append(userId).append(" -- ");
 		buffer.append("Email Id : ").append(emailId).append(" -- ").append("Role Id : ").append(roleId.getRoleName());
 		return buffer.toString();
-	}
+	}*/
 }
