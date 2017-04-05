@@ -12,7 +12,7 @@
 			<div class="left-side-inner">
 
 					<ul class="nav nav-pills nav-stacked custom-nav">
-						<li class="active"><a href="chat"><i class="lnr lnr-power-switch"></i><span>Chat</span></a></li>
+						<li class="active"><a href="${sessionScope.baseUrl}chat/showChatHistory"><i class="lnr lnr-power-switch"></i><span>Chat History</span></a></li>
 						<!-- <li class="menu-list">
 							<a href="#"><i class="lnr lnr-cog"></i>
 								<span>Components</span></a>

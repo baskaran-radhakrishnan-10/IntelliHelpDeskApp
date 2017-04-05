@@ -21,9 +21,9 @@ import com.helpdesk.util.ApplicationConstants;
 
 
 @Controller
-public class ApplicationMainController {
+public class ApplicationMainWebController {
 	
-private static final Logger LOG=Logger.getLogger(ApplicationMainController.class);
+private static final Logger LOG=Logger.getLogger(ApplicationMainWebController.class);
 	
 	@Autowired
 	private HttpSession session;
@@ -44,11 +44,6 @@ private static final Logger LOG=Logger.getLogger(ApplicationMainController.class
 	@RequestMapping(value = "/home")
 	public String showHomePage(){
 		return "homepage";
-	}
-	
-	@RequestMapping(value = "/chat")
-	public String showChatWindow(){
-		return "chatpage";
 	}
 	
 	@RequestMapping(value = "/dashboard")

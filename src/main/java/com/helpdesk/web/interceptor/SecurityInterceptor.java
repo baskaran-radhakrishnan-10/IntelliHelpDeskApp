@@ -88,10 +88,13 @@ public class SecurityInterceptor extends HandlerInterceptorAdapter{
 		if(null != ex){
 			if(ex instanceof UIException){
 				LOG.debug("Exception Message :"+ex.getMessage());
-				FaultCode faultCode = ((UIException) ex).getFaultCode();
-				if(faultCode.equals(CommonFaultCode.CACHE_FAILED_ERROR)){
-					//preHandle(request, response, handler);
+				if(ajax){
+					
 				}
+				//FaultCode faultCode = ((UIException) ex).getFaultCode();
+				//if(faultCode.equals(CommonFaultCode.CACHE_FAILED_ERROR)){
+					//preHandle(request, response, handler);
+				//}
 			}
 		}
 		LOG.debug("After Complettion :");

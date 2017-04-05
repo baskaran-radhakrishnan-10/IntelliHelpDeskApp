@@ -25,5 +25,17 @@ public class ApplicationConstants {
 	public static final String ROLE_ID = "roleId";
 	
 	public static final String FIRST_LOGIN = "FIRST_LOGIN";
+	
+	public static final String STATUS="STATUS";
+
+	public static final String SUCCESS="SUCCESS";
+
+	public static final String ERROR="ERROR";
+
+	public static final String SERVER_DATA="SERVER_DATA";
+	
+	public static final String TRANSIENT_ID = "id";
+	
+	public static final String TRANSIENT_LOG_DETAIL="logDeatil";
 
 }
