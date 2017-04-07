@@ -26,7 +26,7 @@ public class LoginDAOImpl implements LoginDAO{
 		Map<String,Object> restrictionMap=new HashMap<>();
 		restrictionMap.put("user_id", userId);
 		restrictionMap.put("password", password);
-		restrictionMap.put("is_active", true);
+		restrictionMap.put("is_active", "Y");
 		try {
 			user=abstractHibernateDAOAPI.getEntity(User.class, restrictionMap);
 		} catch (DaoException e) {

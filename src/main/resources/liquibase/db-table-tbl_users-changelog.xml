@@ -6,7 +6,7 @@
 	<changeSet author="baskaran radhakrishnan" id="alter_tbl_users_changeset"	runOnChange="true">
 		<addDefaultValue columnName="created_on" columnDataType="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP" tableName="tbl_users" />
 		<addDefaultValue columnName="modified_on" columnDataType="DATETIME" defaultValueComputed="CURRENT_TIMESTAMP" tableName="tbl_users" />
-		<addDefaultValue columnName="is_deleted" columnDataType="boolean" defaultValueBoolean="false" tableName="tbl_users" />
+		<addDefaultValue columnName="is_deleted" columnDataType="CHAR" defaultValue="N" tableName="tbl_users" />
 	</changeSet>
 	
 	<changeSet author="baskaran radhakrishnan" id="insert_tbl_users_changeset"	runOnChange="true">

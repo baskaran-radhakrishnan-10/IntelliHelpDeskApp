@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -20,7 +21,8 @@ public class GeneralEntity implements Serializable {
 	private static final long serialVersionUID = 5342632135099568516L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "nosicSeq")
+	@SequenceGenerator(name = "nosicSeq", sequenceName = "NOSIC_SEQ", allocationSize = 1)
 	@Column(name = "gkey", unique = true, nullable = false)
 	private int gkey;
 

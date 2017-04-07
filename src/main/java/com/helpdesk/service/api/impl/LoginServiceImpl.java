@@ -89,7 +89,7 @@ public class LoginServiceImpl implements LoginService{
 
 			session.setAttribute(ApplicationConstants.ROLE_ID, role.getRoleName());
 
-			session.setAttribute(ApplicationConstants.FIRST_LOGIN, user.isFirstLogin());
+			session.setAttribute(ApplicationConstants.FIRST_LOGIN, user.getFirstLogin());
 
 			//CACHE_INS.removeAllItemFromGroup(user.getUserId());
 

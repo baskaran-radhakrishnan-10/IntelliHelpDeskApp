@@ -1,4 +1,4 @@
 gkey,name,user_id,password,email_id,is_active,role_id,first_login,created_by,modified_by
-1,Stephen,steve,sgpbaRwRHfI=,Stephen.Wesley@equiniti.com,1,1,1,null,null
-2,Baskaran,baski,sgpbaRwRHfI=,baskaran.radhakrishnan@equiniti.com,1,1,1,null,null
-3,Usha,usha,sgpbaRwRHfI=,usha.suresh@equiniti.com,1,1,1,null,null
+1,Stephen,steve,sgpbaRwRHfI=,Stephen.Wesley@equiniti.com,Y,1,Y,null,null
+2,Baskaran,baski,sgpbaRwRHfI=,baskaran.radhakrishnan@equiniti.com,Y,1,Y,null,null
+3,Usha,usha,sgpbaRwRHfI=,usha.suresh@equiniti.com,Y,1,Y,null,null

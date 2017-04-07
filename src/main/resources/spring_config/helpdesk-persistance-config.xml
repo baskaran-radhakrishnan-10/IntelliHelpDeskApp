@@ -48,6 +48,10 @@
 		<property name="abstractHibernateDAOAPI" ref="abstractHibernateDAOAPI" />
 	</bean>
 	
+	<bean id="queryResolverDAO" class="com.helpdesk.dao.api.impl.QueryResolverDAOImpl">
+		<property name="abstractHibernateDAOAPI" ref="abstractHibernateDAOAPI" />
+	</bean>
+	
 	<!-- <bean id="loginDAO" class="com.equiniti.qa_report.dao.api.impl.LoginDAOImpl">
 		<property name="abstractHibernateDAOAPI" ref="abstractHibernateDAOAPI" />
 	</bean>

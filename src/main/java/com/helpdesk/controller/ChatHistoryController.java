@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +16,10 @@ import com.equiniti.exception.api.faultcode.CommonFaultCode;
 import com.helpdesk.entity.ChatHistory;
 import com.helpdesk.entity.User;
 import com.helpdesk.service.api.ChatHistoryService;
+import com.helpdesk.service.api.QueryResolverService;
 import com.helpdesk.util.ApplicationConstants;
 import com.helpdesk.util.CommonUtil;
+import com.helpdesk.util.DateAndTimeUtil;
 
 @Component("chatHistoryController")
 public class ChatHistoryController {
@@ -28,6 +31,9 @@ public class ChatHistoryController {
 	
 	@Autowired
 	private ChatHistoryService chatHistoryService;
+	
+	@Autowired
+	private QueryResolverService queryResolverService;
 	
 	public Map<String,Object> getChatHistory(Map<String,Object> inputParam) throws ControllerException{
 		Map<String,Object> returnObjMap=new HashMap<>();
@@ -45,8 +51,12 @@ public class ChatHistoryController {
 	public Map<String,Object> addChatHistory(Map<String,Object> inputParam) throws ControllerException{
 		Map<String,Object> returnObjMap=new HashMap<>();
 		try {
+			String SystemResponse = queryResolverService.getSolutionForQuery(inputParam);
+			inputParam.put("sysAnswerTime", DateAndTimeUtil.getDateTimeFromDate(DateAndTimeUtil.getCurrentDate()));
+			inputParam.put("sysAnswer", SystemResponse);
 			Object returnObj=chatHistoryService.addChatHistory(populateEntityFromMap(inputParam));
-			returnObjMap.put(ApplicationConstants.SERVER_DATA, returnObj);
+			inputParam.put("rowId", returnObj);
+			returnObjMap.put(ApplicationConstants.SERVER_DATA, inputParam);
 			returnObjMap.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS);
 		} catch (APIException e) {
 			throw new ControllerException(e.getFaultCode(), e);

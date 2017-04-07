@@ -3,8 +3,8 @@ package com.helpdesk.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -15,7 +15,8 @@ import org.joda.time.DateTime;
 public class ChatHistory {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "nosicSeq")
+	@SequenceGenerator(name = "nosicSeq", sequenceName = "NOSIC_SEQ", allocationSize = 1)
 	@Column(name = "gkey", unique = true, nullable = false)
 	private int gkey;
 	

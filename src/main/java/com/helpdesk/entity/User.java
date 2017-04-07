@@ -5,13 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import com.equiniti.persistance_api.audit.api.IAuditLog;
 
 @Entity
 @Table(name = "tbl_users")
-public class User extends GeneralEntity implements IAuditLog{
+public class User extends GeneralEntity{
 
 	private static final long serialVersionUID = -1968065884219305808L;
 	
@@ -32,13 +29,13 @@ public class User extends GeneralEntity implements IAuditLog{
 	private  Roles roleId;
 
 	@Column(name = "is_active")
-	private  boolean active;
+	private  Character active;
 
 	@Column(name = "first_login")
-	private  boolean firstLogin;
+	private  Character firstLogin;
 	
 	@Column(name = "is_deleted")
-	private  boolean deleted;
+	private  Character deleted;
 	
 	/*@Column(name = "deleted_time")
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
@@ -53,21 +50,6 @@ public class User extends GeneralEntity implements IAuditLog{
 	}*/
 
 
-	public boolean isDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	public boolean isFirstLogin() {
-		return firstLogin;
-	}
-
-	public void setFirstLogin(boolean firstLogin) {
-		this.firstLogin = firstLogin;
-	}
 
 	public String getUserFullName() {
 		return userFullName;
@@ -107,24 +89,28 @@ public class User extends GeneralEntity implements IAuditLog{
 		this.roleId = roleId;
 	}
 
-	public boolean isActive() {
+	public Character getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Character active) {
 		this.active = active;
 	}
 
-	@Override
-	@Transient
-	public Long getId() {
-		return (long) this.getGkey();
+	public Character getFirstLogin() {
+		return firstLogin;
 	}
 
-	@Override
-	@Transient
-	public String getLogDeatil() {
-		return this.toString();
+	public void setFirstLogin(Character firstLogin) {
+		this.firstLogin = firstLogin;
+	}
+
+	public Character getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Character deleted) {
+		this.deleted = deleted;
 	}
 
 	/*@Override
