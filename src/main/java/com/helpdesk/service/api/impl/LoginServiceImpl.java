@@ -82,6 +82,8 @@ public class LoginServiceImpl implements LoginService{
 			session.setAttribute(ApplicationConstants.USER_OBJ, user);
 
 			session.setAttribute(ApplicationConstants.USER_ID, user.getUserId());
+			
+			session.setAttribute(ApplicationConstants.USER_GKEY, user.getGkey());
 
 			session.setAttribute(ApplicationConstants.USER_NAME, user.getUserFullName());
 

@@ -36,6 +36,12 @@ public class ChatHistory {
 
 	@Column(name = "user_id")
 	private  Integer userId;
+	
+	@Column(name = "user_query_time_stamp")
+	private Long queryTimeStamp;
+	
+	@Column(name = "system_answer_time_stamp")
+	private Long sysAnswerTimeStamp;
 
 	public int getGkey() {
 		return gkey;
@@ -83,6 +89,22 @@ public class ChatHistory {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+
+	public Long getQueryTimeStamp() {
+		return queryTimeStamp;
+	}
+
+	public void setQueryTimeStamp(Long queryTimeStamp) {
+		this.queryTimeStamp = queryTimeStamp;
+	}
+
+	public Long getSysAnswerTimeStamp() {
+		return sysAnswerTimeStamp;
+	}
+
+	public void setSysAnswerTimeStamp(Long sysAnswerTimeStamp) {
+		this.sysAnswerTimeStamp = sysAnswerTimeStamp;
 	}
 
 }

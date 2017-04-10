@@ -37,9 +37,15 @@ public class ChatHistoryController {
 	
 	public Map<String,Object> getChatHistory(Map<String,Object> inputParam) throws ControllerException{
 		Map<String,Object> returnObjMap=new HashMap<>();
+		Object returnObj=null;
 		try {
-			Object returnObj=chatHistoryService.getChatHistory(inputParam);
+			inputParam.put("user_id", session.getAttribute(ApplicationConstants.USER_GKEY));
+			if(inputParam.containsKey("GET_CHAT_HISTORY_BY_DATE")){
+				inputParam.remove("GET_CHAT_HISTORY_BY_DATE");
+				returnObj=chatHistoryService.getChatHistoryByDate(inputParam);
+			}
 			returnObjMap.put(ApplicationConstants.SERVER_DATA, returnObj);
+			returnObjMap.put(ApplicationConstants.STATUS, ApplicationConstants.SUCCESS);
 		} catch (APIException e) {
 			throw new ControllerException(e.getFaultCode(), e);
 		} catch(Exception e){
@@ -53,6 +59,7 @@ public class ChatHistoryController {
 		try {
 			String SystemResponse = queryResolverService.getSolutionForQuery(inputParam);
 			inputParam.put("sysAnswerTime", DateAndTimeUtil.getDateTimeFromDate(DateAndTimeUtil.getCurrentDate()));
+			inputParam.put("sysAnswerTimeStamp", DateAndTimeUtil.getCurrentDate().getTime());
 			inputParam.put("sysAnswer", SystemResponse);
 			Object returnObj=chatHistoryService.addChatHistory(populateEntityFromMap(inputParam));
 			inputParam.put("rowId", returnObj);

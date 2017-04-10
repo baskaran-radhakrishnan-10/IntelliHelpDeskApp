@@ -42,7 +42,7 @@ public class ChatHistoryWebController {
 		LOG.debug("END getChatHistory() Method!!!");
 		return returnObj;
 	}
-
+	
 	@RequestMapping(value = "/addChatHistory", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String,Object> addChatHistory(@RequestBody Map<String,Object> inputData) throws UIException{

@@ -44,6 +44,8 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
+	getChatHistory(new Date());
 
 });
 
@@ -51,6 +53,7 @@ function sendMessage(message){
 	var data = {};
 	data["userQuery"] = message;
 	data["queryTime"] = new Date();
+	data["queryTimeStamp"]=new Date().getTime();
 	data=JSON.stringify(data);
 	ajaxHandler("POST", data, "application/json", getApplicationRootPath()+"chat/addChatHistory", 'json', sendMessageError, sendMessageSuccess,true);
 }
@@ -72,6 +75,60 @@ function sendMessageSuccess(respose){
 }
 
 function sendMessageError(error){
+	console.log(error);
+}
+
+function getChatHistory(date){
+	
+	/*var year = date.getFullYear();
+	var month = date.getMonth();
+	if(month.length < 2){
+		month = '0'+month;
+	}
+	var day = date.getDate();
+	if(day.length < 2){
+		day = '0'+day;
+	}*/	
+	var startDate = moment(date).format('DD-MMM-YY');
+	var endDate = startDate;
+	
+	var dataObj = {};
+	dataObj['startDate'] = startDate;
+	dataObj['endDate'] = endDate;
+	dataObj['GET_CHAT_HISTORY_BY_DATE']=true;
+	dataObj=JSON.stringify(dataObj);
+	ajaxHandler("POST", dataObj, "application/json", getApplicationRootPath()+"chat/getChatHistory", 'json', getChatHistoryError, getChatHistorySuccess,true);
+}
+
+function getChatHistorySuccess(respose){
+	
+	if(respose['STATUS'] == 'SUCCESS'){
+		
+		var serverData = respose['SERVER_DATA'];
+		
+		$.each(serverData,function(index,chatHistoryObj){
+			
+			var userQueryTime = new Date(chatHistoryObj['USER_QUERY_TIME_STAMP']);
+			
+			var userQuery = chatHistoryObj['USER_QUERY'];
+			
+			var sysAnswerTime = new Date(chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']);
+			
+			var sysAnswer = chatHistoryObj['SYSTEM_ANSWER'];
+			
+			console.log(chatHistoryObj);
+			
+			$('<div class="message message-personal">' + userQuery + '<div class="timestamp">' + userQueryTime.getHours() + ':' + userQueryTime.getMinutes() + ':' + userQueryTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+
+			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			    
+			updateScrollbar();
+			
+		});
+	}
+}
+
+function getChatHistoryError(error){
 	console.log(error);
 }
 
