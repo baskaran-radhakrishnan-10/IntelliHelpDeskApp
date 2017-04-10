@@ -16,7 +16,7 @@ public class Infoburst extends GeneralEntity{
 	@Column(name = "INBURST_KEY_WORD")
 	private String burstkey;
 		
-	@Column(name = "INBURST_DESCRIPTION")
+	@Column(name = "INBURST_DESCRIPTION",length=4000)
 	private String burstdesc;
 	
 	

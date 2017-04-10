@@ -7,7 +7,7 @@
 	</changeSet>
 	
 	<changeSet author="baskaran radhakrishnan" id="insert_tbl_risk_details_changeset"	runOnChange="true">
-		<loadData file="/WEB-INF/classes/liquibase/tbl_tbl_risk_details_initial_data.csv" tableName="tbl_risk_details"/>
+		<loadData file="/WEB-INF/classes/liquibase/tbl_risk_details_initial_data.csv" tableName="tbl_risk_details"/>
 	</changeSet>
 	
 </databaseChangeLog>	

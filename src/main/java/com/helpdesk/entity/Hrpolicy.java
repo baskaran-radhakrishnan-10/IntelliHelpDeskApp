@@ -16,7 +16,7 @@ public class Hrpolicy extends GeneralEntity{
 	@Column(name = "POLICY_KEY_WORD")
 	private String policykey;
 		
-	@Column(name = "POLICY_DESCRIPTION")
+	@Column(name = "POLICY_DESCRIPTION",length=4000)
 	private String policydesc;
 	
 	

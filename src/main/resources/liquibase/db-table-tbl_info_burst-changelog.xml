@@ -8,7 +8,7 @@
 	</changeSet>
 	
 	<changeSet author="baskaran radhakrishnan" id="insert_tbl_info_burst_changeset"	runOnChange="true">
-		<loadData file="/WEB-INF/classes/liquibase/tbl_tbl_info_burst_data.csv" tableName="tbl_info_burst"/>
+		<loadData file="/WEB-INF/classes/liquibase/tbl_info_burst_initial_data.csv" tableName="tbl_info_burst"/>
 	</changeSet>
 	
 </databaseChangeLog>	

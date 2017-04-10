@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_projects")
-public class Leakage extends GeneralEntity{
+public class Projects extends GeneralEntity{
 
 	private static final long serialVersionUID = -1968065884219305808L;
 	

@@ -19,4 +19,17 @@
     
     <include file="db-table-tbl_mst_lookup-changelog.xml" relativeToChangelogFile="true" />
     
+    <include file="db-table-tbl_defect_leakage-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_hr_policy-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_info_burst-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_projects-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_risk_details-changelog.xml" relativeToChangelogFile="true" />
+    
+    <include file="db-table-tbl_schedule_deviation-changelog.xml" relativeToChangelogFile="true" />
+    
+    
 </databaseChangeLog>

@@ -1,6 +1,5 @@
-REM INSERTING into EXPORT_TABLE
-SET DEFINE OFF;
-Insert into EXPORT_TABLE (PROJ_ID,PROJECT_NAME,CLIENT_NAME) values (1,'Pancredit','Motonovo');
-Insert into EXPORT_TABLE (PROJ_ID,PROJECT_NAME,CLIENT_NAME) values (2,'Pancredit','Starline');
-Insert into EXPORT_TABLE (PROJ_ID,PROJECT_NAME,CLIENT_NAME) values (3,'Pancredit','Axcess');
-Insert into EXPORT_TABLE (PROJ_ID,PROJECT_NAME,CLIENT_NAME) values (4,'Pancredit','NewDay');
+GKEY,PROJ_ID,PROJECT_NAME,CLIENT_NAME
+1,1,Pancredit,Motonovo
+2,2,Pancredit,Starline
+3,3,Pancredit,Axcess
+4,4,Pancredit,NewDayy

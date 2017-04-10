@@ -22,7 +22,7 @@ public class Banding extends GeneralEntity {
 	@Column(name = "BAND_ROLE")
 	private String brole;
 
-	@Column(name = "SKILLSET")
+	@Column(name = "BAND_SKILLSET")
 	private String bskillset;
 
 	@Column(name = "YROFEXPERIENCE")
