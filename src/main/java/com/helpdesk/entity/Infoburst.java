@@ -13,10 +13,10 @@ public class Infoburst extends GeneralEntity{
 	@Column(name = "INBURST_ID",unique = true, nullable = false)
 	private int burstid;
 	
-	@Column(name = "POLICY_KEY_WORD")
+	@Column(name = "INBURST_KEY_WORD")
 	private String burstkey;
 		
-	@Column(name = "POLICY_DESCRIPTION")
+	@Column(name = "INBURST_DESCRIPTION")
 	private String burstdesc;
 	
 	
