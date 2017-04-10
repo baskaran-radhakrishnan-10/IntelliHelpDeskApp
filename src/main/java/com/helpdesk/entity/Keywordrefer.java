@@ -40,9 +40,11 @@ public class Keywordrefer extends GeneralEntity {
 	@Column(name = "FIELDNAME")
 	private String fieldname;
 	
-	@Column(name = "WHERECOND")
-	private String wherec;
+	@Column(name = "WHERETCOND")
+	private String where1;
 	
+	@Column(name = "WHERECOND")
+	private String where2;
 	
 	public String getKeyword1() {
 		return key1;
@@ -124,12 +126,20 @@ public class Keywordrefer extends GeneralEntity {
 		this.fieldname = fieldname;
 	}
 	
-	public String getWhereCond() {
-		return wherec;
+	public String getWhereSpecialCond() {
+		return where1;
 	}
 
-	public void setWhereCond(String wherec) {
-		this.wherec = wherec;
+	public void setWhereSpecialCond(String where1) {
+		this.where1 = where1;
+	}
+	
+	public String getWhereCond() {
+		return where2;
+	}
+
+	public void setWhereCond(String where2) {
+		this.where2 = where2;
 	}
 }
 

@@ -19,11 +19,11 @@ public class Banding extends GeneralEntity {
 	@Column(name = "MAX_CTC")
 	private int maxctc;
 	
-	@Column(name = "ROLE")
-	private String role;
+	@Column(name = "BAND_ROLE")
+	private String brole;
 
 	@Column(name = "SKILLSET")
-	private String skillset;
+	private String bskillset;
 
 	@Column(name = "YROFEXPERIENCE")
 	private int yrsexp;
@@ -50,20 +50,20 @@ public class Banding extends GeneralEntity {
 	public void setMaxCtc(int maxctc) {
 		this.maxctc = maxctc;
 	}
-	public String getRole() {
-		return role;
+	public String getBandRole() {
+		return brole;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setBandRole(String brole) {
+		this.brole = brole;
 	}
 
-	public String getSkillset() {
-		return skillset;
+	public String getBandSkillset() {
+		return bskillset;
 	}
 
-	public void setSkillset(String skillset) {
-		this.skillset = skillset;
+	public void setBandSkillset(String bskillset) {
+		this.bskillset = bskillset;
 	}
 	
 	public int getYearofExp() {
