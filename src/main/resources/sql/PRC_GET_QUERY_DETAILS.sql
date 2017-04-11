@@ -3,7 +3,8 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
                                           M_TABLE_NAME OUT VARCHAR2,
                                           M_WHERE_CLAUSE OUT VARCHAR2) AS 
 
-  qry   VARCHAR2(1000);
+  qry   VARCHAR2(500);
+  mst_qry   VARCHAR2(500);
   input_string VARCHAR2(500);
   
   str_form1 varchar2(100);
@@ -21,6 +22,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
   
   tablename varchar2(50);
   fieldname varchar2(150);
+  colname varchar2(100);
   wherepart varchar2(100);
   wherecond1  varchar2(150);
   
@@ -29,21 +31,6 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
   i number(2) := 1;
   match_count number(2) :=0;
   
-    CURSOR LOOKUP_ROLE IS
-      SELECT LOOKUP_CODE,LOOKUP_VALUE
-           FROM tbl_mst_lookup
-           WHERE LOOKUP_TYPE = 'EQI_ROLE'
-           AND ACTIVEYN = 'Y';
-    CURSOR LOOKUP_SKILL IS
-      SELECT LOOKUP_CODE,LOOKUP_VALUE
-           FROM tbl_mst_lookup
-           WHERE LOOKUP_TYPE = 'EQI_SKILLSET'
-           AND ACTIVEYN = 'Y';  
-    CURSOR LOOKUP_PROJ IS
-      SELECT LOOKUP_CODE,LOOKUP_VALUE
-           FROM tbl_mst_lookup
-           WHERE LOOKUP_TYPE = 'EQI_PROJECT'
-           AND ACTIVEYN = 'Y';            
   BEGIN
     
      /* Remove below words from the given input*/
@@ -156,8 +143,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
                 || ') like upper(''%'
                 || dynaword1
                  || '%'')' ).extract ('ROWSET/ROW/*') ) ) t
-                 WHERE table_name NOT IN ('TBL_USERS','TBL_MST_LOOKUP','TBL_KEY_REFER')
-                 AND column_name NOT IN('EMP_EMAIL')
+                 WHERE table_name IN ('TBL_MST_LOOKUP')
                  ORDER BY tablename) 
       LOOP   
         BEGIN
@@ -166,20 +152,29 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
                   dbms_output.put_line('qry ...............' ||qry);
         EXECUTE IMMEDIATE    
             'select count(*)'||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%'|| dynaword1
-                 || '%'')' into match_count;
+                 || '%'') ' into match_count;
          
           IF match_count > 0 THEN
+              
+               mst_qry := 'select column_name '||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%' || dynaword1
+                                   || '%'') and table_name = ''' || M_TABLE_NAME || '''' ;
+                 
+               dbms_output.put_line( mst_qry );
+            EXECUTE IMMEDIATE mst_qry into colname;
+            
+            
             match_String_dyna := dynaword1;
             if (M_WHERE_CLAUSE is null OR M_WHERE_CLAUSE='') then
-                  M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' upper(' || t.columnname ||') like upper(''%'|| dynaword1 || '%'')';
+                  M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' upper(' || colname ||') like upper(''%'|| dynaword1 || '%'')';
                 else
-                  M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' AND ' || ' upper(' || t.columnname ||') like upper(''%'|| dynaword1 || '%'')';
+                  M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' AND ' || ' upper(' || colname ||') like upper(''%'|| dynaword1 || '%'')';
                 END IF;  
             exit;
          END IF; 
         EXCEPTION
           WHEN others THEN
             dbms_output.put_line( 'Error encountered trying to read ' ||t.columnname || ' from ' || '.' || t.tablename );
+            dbms_output.put_line( 'Error encountered trying to read ' ||SQLERRM );
         END;
       END LOOP;
      i := i+1;
