@@ -39,5 +39,7 @@ public class ApplicationConstants {
 	public static final String TRANSIENT_ID = "id";
 	
 	public static final String TRANSIENT_LOG_DETAIL="logDeatil";
+	
+	public static final String PROCEDURE_CALL_QUERY1 = "PROCEDURE_CALL_QUERY1";
 
 }

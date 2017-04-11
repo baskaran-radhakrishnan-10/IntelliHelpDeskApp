@@ -8,6 +8,6 @@ import com.helpdesk.entity.ChatHistory;
 
 public interface QueryResolverDAO {
 	
-	public List<ChatHistory> getSolutionForQuery(Map<String, Object> restrictionMap) throws DaoException;
+	public String getSolutionForQuery(Map<String, Object> restrictionMap) throws DaoException;
 
 }
