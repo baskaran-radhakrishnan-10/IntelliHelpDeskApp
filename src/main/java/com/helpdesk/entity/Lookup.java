@@ -13,11 +13,14 @@ public class Lookup extends GeneralEntity{
 	@Column(name = "LOOKUP_TYPE",nullable = false)
 	private String ltype;
 	
-	@Column(name = "LOOKUP_CODE",nullable = false)
-	private String lcode;
-		
-	@Column(name = "LOOKUP_VALUE",nullable = false)
+	@Column(name = "LOOKUP_DESC",nullable = false,length=2000)
 	private String ldesc;
+		
+	@Column(name = "TABLE_NAME",nullable = false)
+	private String ltname;
+	
+	@Column(name = "COLUMN_NAME",nullable = false)
+	private String lcname;
 	
 	@Column(name = "ACTIVEYN",nullable = false)
 	private String lactive;
@@ -30,20 +33,28 @@ public class Lookup extends GeneralEntity{
 		this.ltype = ltype;
 	}
 
-	public String getLookupCode() {
-		return lcode;
-	}
-
-	public void setLookupCode(String lcode) {
-		this.lcode = lcode;
-	}
-	
 	public String getLookupDesc() {
 		return ldesc;
 	}
 
 	public void setLookupDesc(String ldesc) {
 		this.ldesc = ldesc;
+	}
+	
+	public String getTableName() {
+		return ltname;
+	}
+
+	public void setTableName(String ltname) {
+		this.ltname = ltname;
+	}
+	
+	public String getFieldName() {
+		return lcname;
+	}
+
+	public void setFieldName(String lcname) {
+		this.lcname = lcname;
 	}
 	
 	public String getLookupAct() {

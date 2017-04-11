@@ -4,11 +4,20 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd" >
 	
 	<changeSet author="baskaran radhakrishnan" id="alter_tbl_mst_lookup_changeset"	runOnChange="true">
-		<addDefaultValue columnName="ACTIVEYN" columnDataType="char" defaultValue="Y" tableName="tbl_mst_lookup" />
 	</changeSet>
 	
 	<changeSet author="baskaran radhakrishnan" id="insert_tbl_mst_lookup_changeset"	runOnChange="true">
-		<loadData file="/WEB-INF/classes/liquibase/tbl_mst_lookup_initial_data.csv" tableName="tbl_mst_lookup"/>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_ROLE','Managing Director,General Manager,Department Head,Manager,Team Lead,Software Engineer,Senior Software Engineer,Test Engineer,Senior Test Engineer,Systems Analyst,Senior Systems Analyst,Trainee,MD,GM,DH,TL,SE,SSE,TE,STE,SA,SSA','TBL_EMPLOYEE','EMP_ROLE','Y',1)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_ROLE','Managing Director,General Manager,Department Head,Manager,Team Lead,Software Engineer,Senior Software Engineer,Test Engineer,Senior Test Engineer,Systems Analyst,Senior Systems Analyst,Trainee,MD,GM,DH,TL,SE,SSE,TE,STE,SA,SSA','TBL_BANDING','BAND_ROLE','Y',2)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_SKILLSET','Java,ASP.NET,.net,PL SQL,plsql,PRO C,MVC,C#,SQL Server,AX,CRM,Visual Basic,VB,Visual Foxpro,QA Automation,CUID,Selenium','TBL_EMPLOYEE','EMP_SKILLSET','Y',3)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_SKILLSET','Java,ASP.NET,.net,PL SQL,plsql,PRO C,MVC,C#,SQL Server,AX,CRM,Visual Basic,VB,Visual Foxpro,QA Automation,CUID,Selenium','TBL_BANDING','BAND_SKILLSET','Y',4)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_PROJECT','Mangement,Live System,Pancredit,Charter UK,HRP,PDC,Support','TBL_EMPLOYEE','EMP_PROJECT','Y',5)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_PROJECT','Mangement,Live System,Pancredit,Charter UK,HRP,PDC,Support','TBL_RISK_DETAILS','RISK_PROJECT','Y',6)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_PROJECT','Mangement,Live System,Pancredit,Charter UK,HRP,PDC,Support','TBL_SCHEDULE_DEVIATION','SD_PROJECT','Y',7)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_PROJECT','Mangement,Live System,Pancredit,Charter UK,HRP,PDC,Support','TBL_DEFECT_LEAKAGE','DL_PROJECT','Y',8)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('EQI_PROJECT','Mangement,Live System,Pancredit,Charter UK,HRP,PDC,Support','TBL_PROJECTS','PROJECT_NAME','Y',9)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('MONTH','Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Ssp,Oct,Nov,Dec,January,February,March,April,May,June,July,Augest,September,October,November,December','','','Y',10)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_mst_lookup (LOOKUP_TYPE,LOOKUP_DESC,TABLE_NAME,COLUMN_NAME,C_ACTIVE,GKEY) values('YEAR','2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020','','','Y',11)</sql>
 	</changeSet>
 	
 </databaseChangeLog>	
