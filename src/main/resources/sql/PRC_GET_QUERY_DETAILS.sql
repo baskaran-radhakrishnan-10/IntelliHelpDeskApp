@@ -23,6 +23,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
   tablename varchar2(50);
   fieldname varchar2(150);
   colname varchar2(100);
+  lookuptype varchar2(30);
   wherepart varchar2(100);
   wherecond1  varchar2(150);
   
@@ -34,7 +35,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
   BEGIN
     
      /* Remove below words from the given input*/
-    select regexp_replace(P_CHAT_TEXT, '(Please)|(provide)|(pls)|(plz)|(give)|(take) |(tell)|(ping)| (me) |(detail)|(detais)|(how)|(many)|(list)|(out)|(of)|(who)|(share)|(currently)|(send)|(are)|(in) |(having)|(have)|(for)', '',1,0,'i') 
+    select regexp_replace(P_CHAT_TEXT, '(Please)|(provide)|(pls)|(plz)|(give)|(take) |(tell)|(ping)| (me) |(detail)|(detais)|(how)|(many)|(list)|(out)|(of)|(who)|(share)|(currently)|(send)|(are)|(in) |(having)|(have)|(for)|(to) ', '',1,0,'i') 
     into input_string
     from dual;
     
@@ -121,15 +122,25 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
      str_form2 := trim(regexp_replace(str_form1, match_String_key, '',1,0,'i'));
      dbms_output.put_line( 'select _clause......... ' ||M_SELECT_CLAUSE);
      dbms_output.put_line( 'Table Name......... ' ||M_TABLE_NAME);
-      dbms_output.put_line( 'str_form2......... ' ||str_form2);
+     dbms_output.put_line( 'str_form2......... ' ||str_form2);
      /*end */
      /* Check where clause data available in the above output*/
+     cnt :=0;
+     select REGEXP_COUNT(str_form2, '[^ ]+', 1,'i') into cnt from dual;
+     <<For2>>
+     FOR no2 IN 1 .. cnt loop 
      i:=1;
      match_count :=0;
-   LOOP
-      dynaword1 := regexp_substr(str_form2, '([^[:blank:]]+)', 1,  i);
-       dbms_output.put_line( 'String......... ' ||dynaword1);
-      EXIT WHEN dynaword1 IS NULL;
+    LOOP
+        if no2=1 then
+          dynaword1 := trim(regexp_substr(str_form2, '[^ ]+',no2,i));
+        elsif no2 > 1 then
+          dynaword1 := trim(regexp_substr(str_form2, '[^ ]+',i,i) || ' ' || regexp_substr(str_form2, '[^ ]+',i,i+1));
+        end if;		
+        dbms_output.put_line( 'String......... ' ||dynaword1);
+        /*dynaword1 := dynaword1 || ',';*/
+        EXIT WHEN dynaword1 IS NULL;
+        
       FOR t IN (SELECT DISTINCT SUBSTR (dynaword1, 1, 11) Searchword,
                 SUBSTR (table_name, 1, 25) tablename,
                 SUBSTR (column_name, 1, 20) columnname
@@ -141,35 +152,32 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
                 || ' where upper('
                  || column_name
                 || ') like upper(''%'
-                || dynaword1
+                || dynaword1 ||','
                  || '%'')' ).extract ('ROWSET/ROW/*') ) ) t
                  WHERE table_name IN ('TBL_MST_LOOKUP')
                  ORDER BY tablename) 
       LOOP   
         BEGIN
        qry := 'select count(*) '|| match_count ||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%'|| dynaword1
-                 || '%'')';
+                 || ',%'')';
                   dbms_output.put_line('qry ...............' ||qry);
         EXECUTE IMMEDIATE    
             'select count(*)'||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%'|| dynaword1
-                 || '%'') ' into match_count;
+                 || ',%'') ' into match_count;
          
           IF match_count > 0 THEN
               
-               mst_qry := 'select column_name '||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%' || dynaword1
-                                   || '%'') and table_name = ''' || M_TABLE_NAME || '''' ;
+               mst_qry := 'select column_name,lookup_type '||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%' || dynaword1
+                                   || ',%'') and table_name = ''' || M_TABLE_NAME || '''' ;
                  
                dbms_output.put_line( mst_qry );
-            EXECUTE IMMEDIATE mst_qry into colname;
+            EXECUTE IMMEDIATE mst_qry into colname,lookuptype;
             
-            
-            match_String_dyna := dynaword1;
-            if (M_WHERE_CLAUSE is null OR M_WHERE_CLAUSE='') then
+                if (M_WHERE_CLAUSE is null OR M_WHERE_CLAUSE='') then
                   M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' upper(' || colname ||') like upper(''%'|| dynaword1 || '%'')';
                 else
                   M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' AND ' || ' upper(' || colname ||') like upper(''%'|| dynaword1 || '%'')';
                 END IF;  
-            exit;
          END IF; 
         EXCEPTION
           WHEN others THEN
@@ -177,8 +185,16 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
             dbms_output.put_line( 'Error encountered trying to read ' ||SQLERRM );
         END;
       END LOOP;
-     i := i+1;
-      END LOOP;
+          IF match_count > 0 THEN
+              match_String_dyna := dynaword1;
+              str_form2 := trim(regexp_replace(str_form2, match_String_dyna, '',1,0,'i'));
+              dbms_output.put_line( 'After Match......... ' ||str_form2);
+          /* exit For2 when match_count > 0;*/
+             ELSE
+              i := i+1;
+            END IF;      
+        END LOOP;
+        END LOOP;
        /*End*/
     /*Remove matched table value like name , role , skill set etc from the input string */
 		 str_form3 := trim(regexp_replace(str_form2, match_String_dyna, '',1,0,'i'));
@@ -190,7 +206,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
         /* Check where clause data available in the above output*/
         cnt :=0;
         select REGEXP_COUNT(str_form3, '[^ ]+', 1,'i') into cnt from dual;
-        <<For2>>
+        <<For3>>
          FOR no1 IN 1 .. cnt loop 
            i:=1;
            match_count :=0;
@@ -248,7 +264,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
                 else
                   M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' AND ' ||wherepart || wherecond1;
                 END IF;  
-                exit For2 when match_count > 0;
+                exit For3 when match_count > 0;
              ELSE
                 i := i+1;
              END IF;	
@@ -256,5 +272,6 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
        END LOOP;  
     END IF;  
    dbms_output.put_line( 'M_WHERE_CLAUSE....... ' ||M_WHERE_CLAUSE );
-  /*End*/       
+  /*End*/
+  
 END PRC_GET_QUERY_DETAILS;
