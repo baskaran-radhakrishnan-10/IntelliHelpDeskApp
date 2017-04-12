@@ -7,7 +7,6 @@
 <spring:url value="/resources/originalTheme/css/chat/style.css"	var="StyleCss" />
 <spring:url value="/resources/originalTheme/js/custom/custom_chat.js"	var="customChatJs" />
 <spring:url value="/resources/originalTheme/js/custom/custom_chatHistory.js"	var="customChatHistoryJs" />
-<spring:url value="/resources/originalTheme/js/plugin/moment.js"	var="momentJs" />
 
 <link rel="stylesheet" href="${NormalizeCss}">
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
@@ -33,6 +32,5 @@
 <div class="bg"></div>
 
 <script	src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script> 	
-<script src="${momentJs}"></script>
 <script src="${customChatHistoryJs}"></script>
 

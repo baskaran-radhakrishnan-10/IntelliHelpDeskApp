@@ -52,6 +52,14 @@ function getChatHistoryDetailsSuccess(respose){
 				var tableRowHtml = '<tr>';
 				
 				$.each(values,function(index,value){
+					if(jQuery.type(value) === "number"){
+						var numberStr = value+"";
+						console.log("length :"+numberStr.length);
+						if(numberStr.length >12){
+							value = moment(new Date(value)).format('DD-MMM-YYYY');
+						}
+					}
+					
 					tableRowHtml += '<td>'+value+'</td>';
 				});
 				

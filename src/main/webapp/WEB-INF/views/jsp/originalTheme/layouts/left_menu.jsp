@@ -5,14 +5,14 @@
 				<h1><a href="index.html">Easy <span>Admin</span></a></h1>
 			</div> -->
 			<div class="logo-icon text-center">
-				<a href="${sessionScope.baseUrl}chat/showChatHistoryDetails"><i class="lnr lnr-home"></i> </a>
+				<a href="${sessionScope.baseUrl}chat/showChatHistory"><i class="lnr lnr-home"></i> </a>
 			</div>
 
 			<!--logo and iconic logo end-->
 			<div class="left-side-inner">
 
 					<ul class="nav nav-pills nav-stacked custom-nav">
-						<li class="active"><a href="${sessionScope.baseUrl}chat/showChatHistory"><i class="lnr lnr-power-switch"></i><span>Chat History</span></a></li>
+						<%-- <li class="active"><a href="${sessionScope.baseUrl}chat/showChatHistory"><i class="lnr lnr-power-switch"></i><span>Chat History</span></a></li> --%>
 						<!-- <li class="menu-list">
 							<a href="#"><i class="lnr lnr-cog"></i>
 								<span>Components</span></a>

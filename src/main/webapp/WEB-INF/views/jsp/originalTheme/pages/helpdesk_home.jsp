@@ -20,7 +20,7 @@
 								<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
 							</div>
 							<div class="panel-body no-padding" style="display: block;">
-								<table id="querySolutionTable" class="table table-striped" style="width: 30%;left: 34%;position: relative;">
+								<table id="querySolutionTable" class="table table-striped" style="width: 30%;left: -1%;position: relative;">
 									<thead>
 										<tr class="warning" id="tableHeadId">
 											<!-- <th>Last Name</th> -->
