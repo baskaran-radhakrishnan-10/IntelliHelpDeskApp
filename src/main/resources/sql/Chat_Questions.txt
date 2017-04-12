@@ -1,0 +1,13 @@
+tell me usha emp id
+tell me new joiners for this month
+tell me new joiners for this YEAR
+tell me joiners for last year
+tell me leavers for last year
+send me all employees who are developers in pancredit
+tell me all emailids of pancredit
+tell me all emailids of team leads
+ping me .net folks
+ping me list of java and sql resources
+provide me banding of .net resources
+tell me pancredit clients
+Tell me risk items in Live System

@@ -3,6 +3,7 @@ package com.helpdesk.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "tbl_employee")
@@ -32,10 +33,10 @@ public class Employee extends GeneralEntity{
 	private int empmgrid;
 	
 	@Column(name = "EMP_DOJ")
-	private String empdoj;
+	private Date empdoj;
 	
 	@Column(name = "EMP_DOL")
-	private String empdol;
+	private Date empdol;
 	
 	@Column(name = "EMP_CTC_PM")
 	private int empctc;
@@ -95,19 +96,19 @@ public class Employee extends GeneralEntity{
 		this.empmgrid = empmgrid;
 	}
 	
-	public String getEmpDOJ() {
+	public Date getEmpDOJ() {
 		return empdoj;
 	}
 
-	public void setEmpDOJ(String empdoj) {
+	public void setEmpDOJ(Date empdoj) {
 		this.empdoj = empdoj;
 	}
 	
-	public String getEmpDOL() {
+	public Date getEmpDOL() {
 		return empdol;
 	}
 
-	public void setEmpDOL(String empdol) {
+	public void setEmpDOL(Date empdol) {
 		this.empdol = empdol;
 	}
 	
