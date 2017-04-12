@@ -16,6 +16,8 @@ public interface ChatHistoryDAO {
 
     public List<ChatHistory> getChatHistory(Map<String, Object> restrictionMap) throws DaoException;
     
+    public ChatHistory getChatHistoryByKey(Map<String, Object> restrictionMap) throws DaoException;
+    
     public List<ChatHistory> listChatHistory(Map<String, Object> restrictionMap) throws DaoException;
     
     public List<Map<String,Object>> getChatHistoryByDate(Map<String,Object> restrictionMap) throws DaoException;

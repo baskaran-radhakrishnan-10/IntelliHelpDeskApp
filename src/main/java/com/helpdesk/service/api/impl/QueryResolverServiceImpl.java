@@ -17,7 +17,7 @@ public class QueryResolverServiceImpl implements QueryResolverService{
 	private QueryResolverDAO queryResolverDAO;
 	
 	@Override
-	public String getSolutionForQuery(Map<String,Object> inputParam) throws APIException {
+	public Map<String,Object> getSolutionForQuery(Map<String,Object> inputParam) throws APIException {
 		try {
 			return queryResolverDAO.getSolutionForQuery(inputParam);
 		} catch (Exception e) {

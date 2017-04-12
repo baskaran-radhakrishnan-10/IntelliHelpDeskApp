@@ -45,6 +45,16 @@ $(document).ready(function(){
 		}
 	});
 	
+	$(document).on("click",'#sysResponseMessageId',function(event){
+		console.log("anchor tag clicked!!!");
+		//event.preventDefault();
+		console.log($(this));
+		
+		var href=$(this)[0]['href'];
+		console.log("href :"+href);
+		
+	});
+	
 	getChatHistory(new Date());
 
 });
@@ -61,12 +71,21 @@ function sendMessage(message){
 function sendMessageSuccess(respose){
 	console.log(respose);
 	if(respose['STATUS'] == 'SUCCESS'){
+		
 		var serverData = respose['SERVER_DATA'];
 		var sysAnswer = serverData['sysAnswer'];
 		var sysAnswerTime = serverData['sysAnswerTime'];
+		var isJson = serverData['jsonSysResponse'];
+		var gkey = serverData['rowId'];
 		
 		$('.message.loading').remove();
-	    $('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '</div>').appendTo($('.mCSB_container')).addClass('new');
+	    
+	    if("T" == isJson){
+			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" href="getChatHistory/'+gkey+'" >Please click this link , to see system response</a><div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+		}else{
+			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+		}
+	    
 	    setDate();
 	    updateScrollbar();
 		
@@ -116,12 +135,22 @@ function getChatHistorySuccess(respose){
 			
 			var sysAnswer = chatHistoryObj['SYSTEM_ANSWER'];
 			
-			console.log(chatHistoryObj);
+			var isJson = chatHistoryObj['IS_SYSRESPONSE_JSON'];
+			
+			//console.log(" isJson :"+isJson);
+			
+			var gkey = chatHistoryObj['GKEY'];
+			
+			//console.log(chatHistoryObj);
 			
 			$('<div class="message message-personal">' + userQuery + '<div class="timestamp">' + userQueryTime.getHours() + ':' + userQueryTime.getMinutes() + ':' + userQueryTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 
-			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
-			    
+			if("T" == isJson){
+				$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" href="getChatHistory/'+gkey+'" >Please click this link , to see system response</a><div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			}else{
+				$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			}
+			
 			updateScrollbar();
 			
 		});

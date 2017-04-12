@@ -19,6 +19,9 @@
 <spring:url	value="/resources/originalTheme/js/plugin/jquery.nicescroll.js"	var="niceScrollJs" />
 <spring:url value="/resources/originalTheme/js/plugin/scripts.js"	var="ScriptJS" />
 <spring:url value="/resources/originalTheme/js/plugin/wow.min.js"	var="WOWMinJS" />
+<spring:url value="/resources/originalTheme/js/plugin/underscore.js"	var="underscoreJs" />
+<spring:url value="/resources/originalTheme/js/common/common.js"	var="commonJs" />
+
 <!--  End:Javascript -->
 
 <!DOCTYPE HTML>
@@ -58,6 +61,8 @@
  <!-- Meters graphs -->
 <script src="${jqueryJs}"></script>
 <!-- Placed js at the end of the document so the pages load faster -->
+<script src="${underscoreJs}"></script>
+<script src="${commonJs}"></script>
 
 </head> 
    

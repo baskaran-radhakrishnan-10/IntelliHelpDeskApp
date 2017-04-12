@@ -16,13 +16,13 @@ public class Lookup extends GeneralEntity{
 	@Column(name = "LOOKUP_DESC",nullable = false,length=2000)
 	private String ldesc;
 		
-	@Column(name = "TABLE_NAME",nullable = false)
+	@Column(name = "TABLE_NAME")
 	private String ltname;
 	
-	@Column(name = "COLUMN_NAME",nullable = false)
+	@Column(name = "COLUMN_NAME")
 	private String lcname;
 	
-	@Column(name = "ACTIVEYN",nullable = false)
+	@Column(name = "ACTIVEYN")
 	private String lactive;
 	
 	public String getLookupType() {

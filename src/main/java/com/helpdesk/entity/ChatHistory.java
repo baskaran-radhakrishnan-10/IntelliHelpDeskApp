@@ -31,7 +31,7 @@ public class ChatHistory {
 	@Column(name = "user_query")
 	private  String userQuery;
 	
-	@Column(name = "system_answer")
+	@Column(name = "system_answer",length=2000)
 	private  String sysAnswer;
 
 	@Column(name = "user_id")
@@ -42,6 +42,9 @@ public class ChatHistory {
 	
 	@Column(name = "system_answer_time_stamp")
 	private Long sysAnswerTimeStamp;
+	
+	@Column(name = "is_sysresponse_json")
+	private  Character jsonSysResponse;
 
 	public int getGkey() {
 		return gkey;
@@ -105,6 +108,14 @@ public class ChatHistory {
 
 	public void setSysAnswerTimeStamp(Long sysAnswerTimeStamp) {
 		this.sysAnswerTimeStamp = sysAnswerTimeStamp;
+	}
+
+	public Character getJsonSysResponse() {
+		return jsonSysResponse;
+	}
+
+	public void setJsonSysResponse(Character jsonSysResponse) {
+		this.jsonSysResponse = jsonSysResponse;
 	}
 
 }

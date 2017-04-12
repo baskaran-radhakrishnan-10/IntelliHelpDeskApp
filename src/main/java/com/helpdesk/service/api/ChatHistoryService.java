@@ -19,5 +19,7 @@ public interface ChatHistoryService {
     public List<Map<String,Object>> getChatHistoryByDate(Map<String,Object> inputParam) throws APIException;
     
     public List<ChatHistory> listChatHistory() throws APIException;
+    
+    public ChatHistory getChatHistoryByKey(Map<String,Object> inputParam) throws APIException;
 
 }

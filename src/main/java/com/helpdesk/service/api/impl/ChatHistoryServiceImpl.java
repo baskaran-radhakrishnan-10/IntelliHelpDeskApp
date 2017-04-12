@@ -1,13 +1,11 @@
 package com.helpdesk.service.api.impl;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 import org.springframework.stereotype.Service;
 
 import com.equiniti.exception.api.exception.APIException;
@@ -15,7 +13,6 @@ import com.equiniti.exception.api.exception.DaoException;
 import com.helpdesk.dao.api.ChatHistoryDAO;
 import com.helpdesk.entity.ChatHistory;
 import com.helpdesk.service.api.ChatHistoryService;
-import com.helpdesk.util.CommonUtil;
 
 @Service("chatHistoryService")
 public class ChatHistoryServiceImpl implements ChatHistoryService{
@@ -77,6 +74,17 @@ public class ChatHistoryServiceImpl implements ChatHistoryService{
 		} catch (DaoException e) {
 			throw new APIException(e.getFaultCode(), e);
 		}
+	}
+	
+	@Override
+	public ChatHistory getChatHistoryByKey(Map<String,Object> inputParam) throws APIException {
+		ChatHistory chatHistory=null;
+		try {
+			chatHistory = chatHistoryDAO.getChatHistoryByKey(inputParam);
+		} catch (DaoException e) {
+			throw new APIException(e.getFaultCode(), e);
+		}
+		return chatHistory;
 	}
 
 	@Override

@@ -6,6 +6,6 @@ import com.equiniti.exception.api.exception.APIException;
 
 public interface QueryResolverService {
 	
-	public String getSolutionForQuery(Map<String,Object> inputParam) throws APIException;
+	public Map<String, Object> getSolutionForQuery(Map<String,Object> inputParam) throws APIException;
 
 }

@@ -22,7 +22,7 @@
 	<put-attribute name="body" value="/WEB-INF/views/jsp/pages/loginpage.jsp" />
   </definition>
   
-   <definition name="homepage" extends="home.page.template">
+   <definition name="chatdetailspage" extends="home.page.template">
 	<put-attribute name="title" value="Home Page"></put-attribute>
 	<put-attribute name="body_content" value="/WEB-INF/views/jsp/originalTheme/pages/helpdesk_home.jsp" />
   </definition>

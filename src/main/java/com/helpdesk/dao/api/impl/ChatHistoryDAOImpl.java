@@ -49,6 +49,11 @@ public class ChatHistoryDAOImpl implements ChatHistoryDAO{
 		return abstractHibernateDAOAPI.getEntityList(ChatHistory.class, null);
 	}
 	
+	@Override
+	public ChatHistory getChatHistoryByKey(Map<String, Object> restrictionMap) throws DaoException{
+		return abstractHibernateDAOAPI.getEntity(ChatHistory.class, restrictionMap);
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Map<String,Object>> getChatHistoryByDate(Map<String,Object> restrictionMap) throws DaoException{
@@ -67,6 +72,8 @@ public class ChatHistoryDAOImpl implements ChatHistoryDAO{
 			}
 			if(index < (keyList.size()-1)){
 				queryBuffer.append(" AND ");
+			}else{
+				queryBuffer.append(" ORDER BY user_query_time_stamp");
 			}
 		}
 		return (List<Map<String,Object>>) abstractHibernateDAOAPI.processQuery(null, null, null, QueryOperationType.SELECT, QueryType.SQL, queryBuffer.toString());

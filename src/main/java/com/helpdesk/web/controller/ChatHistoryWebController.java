@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,11 @@ public class ChatHistoryWebController {
 	public String showChatHistory(){
 		return "chatpage";
 	}
+	
+	@RequestMapping(value = "/showChatHistoryDetails")
+	public String showChatHistoryDetails(){
+		return "chatdetailspage";
+	}
 
 	@RequestMapping(value = "/getChatHistory", method = RequestMethod.POST)
 	@ResponseBody
@@ -41,6 +47,12 @@ public class ChatHistoryWebController {
 		}
 		LOG.debug("END getChatHistory() Method!!!");
 		return returnObj;
+	}
+	
+	@RequestMapping(value="/getChatHistory/{chatHistoryId}")
+	public String showChatHistoryDetailsWindow(@PathVariable(value="chatHistoryId") String chatHistoryId) throws UIException{
+		chatHistoryController.setSelectedChatIdInSession(Integer.parseInt(chatHistoryId));
+		return "redirect:/chatDetails";
 	}
 	
 	@RequestMapping(value = "/addChatHistory", method = RequestMethod.POST)

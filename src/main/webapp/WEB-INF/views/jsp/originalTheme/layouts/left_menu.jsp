@@ -5,7 +5,7 @@
 				<h1><a href="index.html">Easy <span>Admin</span></a></h1>
 			</div> -->
 			<div class="logo-icon text-center">
-				<a href="home"><i class="lnr lnr-home"></i> </a>
+				<a href="${sessionScope.baseUrl}chat/showChatHistoryDetails"><i class="lnr lnr-home"></i> </a>
 			</div>
 
 			<!--logo and iconic logo end-->

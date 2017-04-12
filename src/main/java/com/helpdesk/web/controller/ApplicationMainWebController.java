@@ -43,12 +43,12 @@ private static final Logger LOG=Logger.getLogger(ApplicationMainWebController.cl
 	
 	@RequestMapping(value = "/home")
 	public String showHomePage(){
-		return "homepage";
+		return "redirect:/chat/showChatHistory";
 	}
 	
-	@RequestMapping(value = "/dashboard")
-	public String showDashBoard(){
-		return "homepage";
+	@RequestMapping(value = "/chatDetails")
+	public String showChatDetails(){
+		return "chatdetailspage";
 	}
 	
 	@RequestMapping(value = "/login")
