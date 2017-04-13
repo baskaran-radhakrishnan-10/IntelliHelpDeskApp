@@ -40,4 +40,9 @@
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_KEY_REFER set KEYWORD3 = 'FOLKS' WHERE keyword1 = 'EMPLOYEES' AND keyword2 = 'RESOURCES'</sql>
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_KEY_REFER set KEYWORD3 = 'RISK ITEMS', KEYWORD4 = 'RISKITEMS' where KEYWORD1 = 'RISKS' AND KEYWORD2='RISK ITEM'</sql>
 	</changeSet>
+	<changeSet author="baskaran radhakrishnan" id="update_tbl_key_refer_changeset_002"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set fieldname = 'EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,TO_DATE(EMP_DOJ,''DD-MM-RRRR'') DOJ' where fieldname = 'EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,TO_DATE(EMP_DOJ,''DD-MM-RRRR'')'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set fieldname = 'EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,TO_DATE(EMP_DOL,''DD-MM-RRRR'') DOL' where fieldname = 'EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,TO_DATE(EMP_DOL,''DD-MM-RRRR'')'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set fieldname = 'EMPLOYEE_ID,EMPLOYEE_NAME,EMP_EMAIL,EMP_ROLE,EMP_PROJECT,TO_DATE(EMP_DOJ,''DD-MM-RRRR'') DOJ' where fieldname = 'EMPLOYEE_ID,EMPLOYEE_NAME,EMP_EMAIL,EMP_ROLE,EMP_PROJECT,TO_DATE(EMP_DOJ,''DD-MM-RRRR'')'</sql>
+	</changeSet>
 </databaseChangeLog>	
