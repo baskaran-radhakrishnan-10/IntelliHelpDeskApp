@@ -1,3 +1,13 @@
+/*<div class="message message-personal" style="
+    background: linear-gradient(120deg, #495049, #495049);
+    border-radius: 5px 5px 5px 5px;
+    cursor: pointer;
+    border-top: 0px solid #257287;
+    left: -41%;
+    position: relative;
+">11-April-2017</div>
+*/
+
 var $messages = $('.messages-content'),d, h, m,i = 0;
 
 $(document).ready(function(){
@@ -27,8 +37,6 @@ $(document).ready(function(){
 			updateScrollbar();
 
 			sendMessage(message);
-
-
 
 		}
 

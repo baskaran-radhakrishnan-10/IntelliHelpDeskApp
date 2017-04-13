@@ -28,7 +28,7 @@
   </definition>
   
   <definition name="chatpage" extends="home.page.template">
-	<put-attribute name="title" value="Chat Window Page"></put-attribute>
+	<put-attribute name="title" value=""></put-attribute>
 	<put-attribute name="body_content" value="/WEB-INF/views/jsp/originalTheme/pages/chat_window.jsp" />
   </definition>
   

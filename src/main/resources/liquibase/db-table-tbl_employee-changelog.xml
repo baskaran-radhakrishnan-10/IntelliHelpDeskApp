@@ -3,11 +3,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd" >
 	
-	<changeSet author="baskaran radhakrishnan" id="alter_tbl_employee_changeset"	runOnChange="true">
-	</changeSet>
-	
 	<changeSet author="baskaran radhakrishnan" id="insert_tbl_employee_changeset"	runOnChange="true">
-		<loadData file="/WEB-INF/classes/liquibase/tbl_employee_initial_data.csv" tableName="tbl_employee"/>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (1,1855,'Usha Suresh','Team Lead','Pancredit','Java,SQL Server','usha.suresh@equiniti.com',1884,to_date('30-Jan-2017','DD-Mon-RRRR'),50000)</sql>
 	</changeSet>
 	
-</databaseChangeLog>	
+	<changeSet author="baskaran radhakrishnan" id="insert_tbl_employee_changeset_001"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (2,1722,'Meganathan Sengodan','Senior Software Engineer','Pancredit','Java,SQL Server','meganathan.sengodan@equiniti.com',1884,to_date('19-Sep-2016','DD-Mon-RRRR'),45000) </sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (3,1665,'Baskaran Radhakrishnan','Senior Software Engineer','Pancredit','Java,SQL Server','baskaran.radhakrishnan@equiniti.com',1884,to_date('22-Aug-2016','DD-Mon-RRRR'),45000) </sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (4,1100,'Stephen Wesley','Department Head','Mangement','Mangement','stephen.wesley@equiniti.com',1001,to_date('18-Jan-2016','DD-Mon-RRRR'),100000) </sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (5,1885,'Nivin Joseph','Team Lead','Pancredit','Java,SQL Server','sahayaarunnivin.joseph@equiniti.com',1884,to_date('13-Mar-2017','DD-Mon-RRRR'),50000) </sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (6,1888,'Divya Ganesan','Senior Software Engineer','Pancredit','Java','divya.ganesan@equiniti.com',1884,to_date('27-Mar-2017','DD-Mon-RRRR'),40000) </sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (7,1884,'Parthasarathi Vijayarahvan','Manager','Pancredit','Java,SQL Server','parthasarathi.vijayarahvan@equiniti.com',1100,to_date('06-Mar-2017','DD-Mon-RRRR'),100000) </sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (8,1755,'Arjun Sundar Rajendran','Team Lead','Pancredit','Java,SQL Server','arjunsundar.Rajendran@equiniti.com',1884,to_date('07-Nov-2016','DD-Mon-RRRR'),60000) </sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (9,1740,'Ramesh Naidu Tatineni','Senior Software Engineer','Pancredit','Java,SQL Server','rameshnaidu.Tatineni@equiniti.com',1884,to_date('30-Sep-2016','DD-Mon-RRRR'),46000) </sql>
+	</changeSet>
+	
+</databaseChangeLog>

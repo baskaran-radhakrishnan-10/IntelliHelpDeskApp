@@ -36,14 +36,23 @@ function getChatHistoryDetailsSuccess(respose){
 			
 			var keys = null
 			
+			var indexArray = [];
+			
 			$.each(systemResponse,function(index,obj){
 				
 				console.log(obj);
+				
 				if(null == keys){
+					var index = 1;
 					keys = _.keys(obj);
 					var tableHeadHtml = "";
 					$.each(keys,function(index,key){
-						tableHeadHtml += '<th>'+key+'</th>';
+						if("CREATED_BY" == key || "MODIFIED_BY" == key || "CREATED_ON" == key || "GKEY" == key || "MODIFIED_ON" == key){
+							indexArray.push(index);
+						}else{
+							tableHeadHtml += '<th>'+key+'</th>';
+						}
+						index++;
 					})
 					$('#querySolutionTable').find('thead').find('#tableHeadId').html(tableHeadHtml);
 				}
@@ -51,16 +60,20 @@ function getChatHistoryDetailsSuccess(respose){
 				
 				var tableRowHtml = '<tr>';
 				
+				var index = 1;
+				
 				$.each(values,function(index,value){
-					if(jQuery.type(value) === "number"){
-						var numberStr = value+"";
-						console.log("length :"+numberStr.length);
-						if(numberStr.length >12){
-							value = moment(new Date(value)).format('DD-MMM-YYYY');
+					if(_.indexOf(indexArray, index) == -1){
+						if(jQuery.type(value) === "number"){
+							var numberStr = value+"";
+							console.log("length :"+numberStr.length);
+							if(numberStr.length >12){
+								value = moment(new Date(value)).format('DD-MMM-YYYY');
+							}
 						}
+						tableRowHtml += '<td>'+value+'</td>';
 					}
-					
-					tableRowHtml += '<td>'+value+'</td>';
+					index ++;
 				});
 				
 				tableRowHtml += '</tr>';

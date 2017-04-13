@@ -37,7 +37,7 @@
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into tbl_key_refer (KEYWORD1,KEYWORD2,KEYWORD3,KEYWORD4,KEYWORD5,KEYWORD6,DYNAWORD1,DYNAWORD2,TABLENAME,FIELDNAME,WHERETCOND,WHERECOND,GKEY)  values('DEFECT LEAKAGE','DEFECTLEAKAGE','LEAKAGE','','','','','','TBL_DEFECT_LEAKAGE','DL_PROJECT,FAT_BUG_CNT,UAT_BUG_CNT,LEAKAGE_PER','','',28)</sql>
 	</changeSet>
 	<changeSet author="baskaran radhakrishnan" id="update_tbl_key_refer_changeset_001"	runOnChange="true">
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_KEY_REFER set keyword3= 'FOLKS' WHERE keyword1 = 'EMPLOYEES' AND keyword2 = 'RESOURCES'</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer  set KEYWORD3 = 'RISK ITEMS', KEYWORD4 = 'RISKITEMS' where KEYWORD1 = 'RISKS' AND KEYWORD2='RISK ITEM'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_KEY_REFER set KEYWORD3 = 'FOLKS' WHERE keyword1 = 'EMPLOYEES' AND keyword2 = 'RESOURCES'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_KEY_REFER set KEYWORD3 = 'RISK ITEMS', KEYWORD4 = 'RISKITEMS' where KEYWORD1 = 'RISKS' AND KEYWORD2='RISK ITEM'</sql>
 	</changeSet>
 </databaseChangeLog>	
