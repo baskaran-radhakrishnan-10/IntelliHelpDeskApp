@@ -1,17 +1,9 @@
-/*<div class="message message-personal" style="
-    background: linear-gradient(120deg, #495049, #495049);
-    border-radius: 5px 5px 5px 5px;
-    cursor: pointer;
-    border-top: 0px solid #257287;
-    left: -41%;
-    position: relative;
-">11-April-2017</div>
-*/
+
 
 var $messages = $('.messages-content'),d, h, m,i = 0;
 
 $(document).ready(function(){
-
+	
 	$('#send_chat_id').on("click",function(event){
 
 		console.log("send button clicked!!!");
@@ -24,7 +16,7 @@ $(document).ready(function(){
 
 			$('#send_chat_id').prop('disabled',true);
 
-			$('<div class="message message-personal">' + message + '<div class="timestamp">' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			$('<div class="message message-personal">' + message + '<div class="timestamp">' + moment(d).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 
 			setDate();
 
@@ -58,10 +50,17 @@ $(document).ready(function(){
 		//event.preventDefault();
 		console.log($(this));
 		
+		console.log("Scroll TOp "+$('#mCSB_1_container').css('top'));
+		
+		if(null != sessionStorageObj){
+			sessionStorageObj.setItem("SCROLL_TOP_POSITION",$('#mCSB_1_container').css('top'));
+		}
+		
 		var href=$(this)[0]['href'];
 		console.log("href :"+href);
 		
 	});
+	
 	
 	getChatHistory(new Date());
 
@@ -90,9 +89,9 @@ function sendMessageSuccess(respose){
 	    //$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" href="'+gkey+'" >Please click this link , to see system response</a></div>').appendTo($('.mCSB_container')).addClass('new');
 	    
 	    if("T" == isJson){
-			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" href="getChatHistory/'+gkey+'" >Please click this link , to see system response</a><div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" href="getChatHistory/'+gkey+'" >Please click this link , to see system response</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 		}else{
-			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 		}
 	    
 	    setDate();
@@ -134,6 +133,8 @@ function getChatHistorySuccess(respose){
 		
 		var serverData = respose['SERVER_DATA'];
 		
+		$('<div class="message message-personal" id="dateSeperatorId" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;left: -44%;position: relative;">'+moment(new Date()).format('DD-MMM-YY')+'</div>').appendTo($('.mCSB_container'));
+		
 		$.each(serverData,function(index,chatHistoryObj){
 			
 			var userQueryTime = new Date(chatHistoryObj['USER_QUERY_TIME_STAMP']);
@@ -152,17 +153,23 @@ function getChatHistorySuccess(respose){
 			
 			//console.log(chatHistoryObj);
 			
-			$('<div class="message message-personal">' + userQuery + '<div class="timestamp">' + userQueryTime.getHours() + ':' + userQueryTime.getMinutes() + ':' + userQueryTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			$('<div class="message message-personal">' + userQuery + '<div class="timestamp">' + moment(userQueryTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 
 			if("T" == isJson){
-				$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" href="getChatHistory/'+gkey+'" >Please click this link , to see system response</a><div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+				$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" href="getChatHistory/'+gkey+'" >Please click this link , to see system response</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 			}else{
-				$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + sysAnswerTime.getHours() + ':' + sysAnswerTime.getMinutes() + ':' + sysAnswerTime.getSeconds() +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+				$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 			}
 			
 			updateScrollbar();
 			
 		});
+		
+		$(document).find('#dateSeperatorId').css("border-bottom","6px solid rgba(0, 0, 0, 0.3)");
+		
+		if(null != sessionStorageObj){
+			$('#mCSB_1_container').css('top',sessionStorageObj.getItem("SCROLL_TOP_POSITION"));
+		}
 	}
 }
 

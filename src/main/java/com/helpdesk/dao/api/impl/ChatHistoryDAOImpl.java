@@ -64,9 +64,9 @@ public class ChatHistoryDAOImpl implements ChatHistoryDAO{
 		for(int index = 0;index<keyList.size();index++){
 			String key = keyList.get(index);
 			if(key.indexOf("startDate") != -1){
-				queryBuffer.append("to_date(user_query_time,'dd-mon-yy')").append(" >= ").append("to_date('").append(restrictionMap.get(key).toString()).append("','dd-mon-yy')");
+				queryBuffer.append("to_date(user_query_time,'dd-MM-yy')").append(" >= ").append("to_date('").append(restrictionMap.get(key).toString()).append("','dd-MM-yy')");
 			}else if(key.indexOf("endDate") != -1){
-				queryBuffer.append("to_date(system_answer_time,'dd-mon-yy')").append(" <= ").append("to_date('").append(restrictionMap.get(key).toString()).append("','dd-mon-yy')");
+				queryBuffer.append("to_date(system_answer_time,'dd-MM-yy')").append(" <= ").append("to_date('").append(restrictionMap.get(key).toString()).append("','dd-MM-yy')");
 			}else if(key.indexOf("user_id") != -1){
 				queryBuffer.append("user_id").append(" = '").append(restrictionMap.get(key)).append("'");
 			}
