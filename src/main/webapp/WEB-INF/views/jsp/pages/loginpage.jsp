@@ -30,9 +30,10 @@
 <spring:url	value="/resources/miminiumTheme/js/plugins/jquery.nicescroll.js"	var="niceScrollJs" />
 <spring:url value="/resources/miminiumTheme/js/plugins/icheck.min.js"	var="iCheckJs" />
 <!-- custom -->
+<spring:url value="/resources/originalTheme/js/common/common.js"	var="commonJs" />
 <spring:url value="/resources/miminiumTheme/js/main.js" var="mainJs" />
+<spring:url value="/resources/originalTheme/js/custom/custom_loginpage.js" var="loginPageJS" />
 <%-- <spring:url value="/resources/core/js/custom/custom.js" var="customJS" /> --%>
-<%-- <spring:url value="/resources/core/js/custom/loginpage_custom.js" var="loginPageJS" /> --%>
 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
@@ -66,9 +67,9 @@
 <script src="${niceScrollJs}"></script>
 <script src="${iCheckJs}"></script>
 <!-- custom -->
+<script src="${commonJs}"></script>
 <script src="${mainJs}"></script>
-
-<script src="${customJS}"></script>
+<script src="${loginPageJS}"></script>
 
 <!--script-->
 

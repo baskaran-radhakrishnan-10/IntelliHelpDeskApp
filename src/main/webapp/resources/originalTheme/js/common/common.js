@@ -90,7 +90,7 @@ SessionStorage.prototype.getItem=function(key){
 	return null;
 }
 
-SessionStorage.prototype.removeItem=function(key,value){
+SessionStorage.prototype.removeItem=function(key){
 	sessionStorage.removeItem(key);
 }
 

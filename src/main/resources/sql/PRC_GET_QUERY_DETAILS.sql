@@ -14,8 +14,8 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
   keyword1 varchar2(30);
   dynaword1 varchar2(30);
   wherespecial varchar2(30);
-  
-  
+  dynaword2 varchar2(30);
+   
   match_String_key varchar2(20);
   match_String_dyna varchar2(20);
   match_String_where varchar2(20);
@@ -26,6 +26,8 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
   lookuptype varchar2(30);
   wherepart varchar2(100);
   wherecond1  varchar2(150);
+  keytablename varchar2(50);
+  keycolumnname varchar2(50);
   
   keyword_cnt number(2) :=0;
   cnt number(2):=0; 
@@ -35,7 +37,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
   BEGIN
     
      /* Remove below words from the given input*/
-    select regexp_replace(P_CHAT_TEXT, '(Please)|(provide)|(pls)|(plz)|(give)|(take) |(tell)|(ping)| (me) |(detail)|(detais)|(how)|(many)|(list)|(out)|(of)|(who)|(share)|(currently)|(send)|(are)|(in) |(having)|(have)|(for)|(to) ', '',1,0,'i') 
+    select regexp_replace(P_CHAT_TEXT, '(all)|(Please)|(provide)|(pls)|(plz)|(give)|(take) |(tell)|(ping)| (me) |(detail)|(detais)|(how)|(many)|(list)|(out)|(of)|(who)|(share)|(currently)|(send)|(are)|(in) |(having)|(have)|(for)|(to) ', '',1,0,'i') 
     into input_string
     from dual;
     
@@ -87,15 +89,17 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
               qry := 'select count(*) '|| match_count ||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper('''|| keyword1
                        || ''')';
                         dbms_output.put_line('qry ...............' ||qry);
+                        keytablename:=t.tablename;
+                        keycolumnname := t.columnname;
               EXECUTE IMMEDIATE    
                   'select count(*)'||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper(''' || keyword1
                        || ''')' into match_count;
-                   
+                   dbms_output.put_line('keycolumnname ...............' ||t.columnname);
                   IF match_count > 0 THEN
                    EXECUTE IMMEDIATE    
             
-                  'select FIELDNAME,TABLENAME,WHERETCOND'||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper(''' || keyword1
-                       || ''')' into M_SELECT_CLAUSE, M_TABLE_NAME,wherepart;
+                  'select FIELDNAME,TABLENAME'||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper(''' || keyword1
+                       || ''')' into M_SELECT_CLAUSE, M_TABLE_NAME;
                  /* dbms_output.put_line('select_clause ...............' || M_SELECT_CLAUSE ||'............'|| M_TABLE_NAME);*/
                   keyword_cnt:=keyword_cnt+1;
                   END IF;
@@ -160,7 +164,9 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
         BEGIN
        qry := 'select count(*) '|| match_count ||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%'|| dynaword1
                  || ',%'')';
-                  dbms_output.put_line('qry ...............' ||qry);
+                 
+                 dbms_output.put_line('dynaword1.......'|| qry );
+          
         EXECUTE IMMEDIATE    
             'select count(*)'||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%'|| dynaword1
                  || ',%'') ' into match_count;
@@ -169,21 +175,32 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
               
                mst_qry := 'select column_name,lookup_type '||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%' || dynaword1
                                    || ',%'') and table_name = ''' || M_TABLE_NAME || '''' ;
-                 
-               dbms_output.put_line( mst_qry );
+                 dbms_output.put_line('dynaword2.......'|| mst_qry );
             EXECUTE IMMEDIATE mst_qry into colname,lookuptype;
-            
-                if (M_WHERE_CLAUSE is null OR M_WHERE_CLAUSE='') then
+               if (M_WHERE_CLAUSE is null OR M_WHERE_CLAUSE='') then
                   M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' upper(' || colname ||') like upper(''%'|| dynaword1 || '%'')';
                 else
                   M_WHERE_CLAUSE:= M_WHERE_CLAUSE || ' AND ' || ' upper(' || colname ||') like upper(''%'|| dynaword1 || '%'')';
                 END IF;  
          END IF; 
         EXCEPTION
-          WHEN others THEN
-            dbms_output.put_line( 'Error encountered trying to read ' ||t.columnname || ' from ' || '.' || t.tablename );
+            when NO_DATA_FOUND  then
+              
+              qry := 'select lookup_type '|| lookuptype ||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%'|| dynaword1
+                 || '%'')';
+                 dbms_output.put_line('dynaword2.......'|| qry );
+                  EXECUTE IMMEDIATE
+              'select lookup_type '||' from ' || t.tablename ||' where upper('|| t.columnname ||') like upper(''%' || dynaword1
+                                     || '%'')' into lookuptype ;
+                dbms_output.put_line('lookuptype.......'|| lookuptype );
+                dynaword2:= upper(dynaword1);
+                  SELECT DECODE(dynaword2,'JAN','01','FEB','02','MAR','03','APR','04','MAY','05','JUN','06','JUL','07','AUG','08','SEP','09','OCT','10','NOV','11','DEC','12')
+                  INTO dynaword2
+                  FROM DUAL;
+                 dbms_output.put_line('dynaword2.......'|| dynaword2 );
+            WHEN others THEN
             dbms_output.put_line( 'Error encountered trying to read ' ||SQLERRM );
-        END;
+           END;
       END LOOP;
           IF match_count > 0 THEN
               match_String_dyna := dynaword1;
@@ -245,15 +262,25 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
                            || ''')' into match_count;
                    
                 IF match_count > 0 THEN
+                                 
+                  qry := 'select WHERECOND,WHERETCOND '|| wherecond1||','||wherepart ||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper('''|| wherespecial
+                           || ''') and upper(' || keycolumnname ||') = upper('''|| keyword1|| ''')';
+                            dbms_output.put_line('qry ...............' ||qry);
+                  
                   EXECUTE IMMEDIATE
-                  'select WHERECOND'||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper(''' || wherespecial
-                                   || ''')' into wherecond1;
+                    'select WHERECOND,WHERETCOND'||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper(''' || wherespecial
+                                     || ''')' into wherecond1,wherepart;
                 END IF; 
                 EXCEPTION
+                    WHEN NO_DATA_FOUND THEN
+                      EXECUTE IMMEDIATE
+                    'select WHERECOND,WHERETCOND'||' from ' || t.tablename ||' where upper('|| t.columnname ||') = upper(''' || wherespecial
+                                     || ''') and upper(' || keycolumnname ||') = upper('''|| keyword1|| ''')' into wherecond1,wherepart;
                     WHEN others THEN
                       dbms_output.put_line( 'Error encountered trying to read ' ||t.columnname || ' from ' || '.' || t.tablename );
                   END;
               END LOOP;
+              
               dbms_output.put_line( match_count);
               IF match_count > 0 THEN
                 match_String_where := wherespecial;

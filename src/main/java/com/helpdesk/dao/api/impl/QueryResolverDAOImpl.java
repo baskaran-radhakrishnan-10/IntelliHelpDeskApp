@@ -60,7 +60,7 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 			
 			if(procedureResultMap.containsValue(null)){
 				
-				returnMap.put("SYS_RESPONSE", "PLEASE CORRECT YOUR QUERY FOR PERFECT RESULT");
+				returnMap.put("SYS_RESPONSE", "Unable to Find Solution, Please Tune your Request.");
 				
 				return returnMap;
 				

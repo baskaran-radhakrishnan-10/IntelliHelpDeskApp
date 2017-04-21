@@ -4,7 +4,7 @@ $(document).ready(function(){
 	
 	getChatHistoryDetails(selectedChatId);
 	
-	$('#backToChatWindowId').on("click",function(event){
+	$('#backToChatWindowId1,#backToChatWindowId2').on("click",function(event){
 		event.preventDefault();
 		console.log('backToChatWindowId clicked');
 		window.location.href=getApplicationRootPath()+"chat/showChatHistory"

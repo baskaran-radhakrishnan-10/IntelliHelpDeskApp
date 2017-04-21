@@ -24,8 +24,8 @@
 		<div class="messages-content"></div>
 	</div>
 	<div class="message-box">
-		<textarea type="text" class="message-input" placeholder="Type message..."></textarea>
-		<button type="submit" id="send_chat_id" class="message-submit" style="height: 44px;width: 103px;">Send</button>
+		<input type="text" class="message-input" id="send_chat_id" placeholder="Type message..."></input>
+		<!-- <button type="submit" id="send_chat_id" class="message-submit" style="height: 44px;width: 103px;">Send</button> -->
 	</div>
 </div>
 
