@@ -55,6 +55,9 @@ function getChatHistoryDetailsSuccess(respose){
 						index++;
 					})
 					$('#querySolutionTable').find('thead').find('#tableHeadId').html(tableHeadHtml);
+					if(keys.length > 1){
+						$('#querySolutionTable').css({"width":"100%","left": "0%" , "margin-bottom" : "0px","background-color" : "rgba(0, 0, 0, 0.11)"});
+					}
 				}
 				var values = _.values(obj);
 				
