@@ -58,7 +58,7 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 
 		if(null != procedureResultMap && !procedureResultMap.isEmpty()){
 			
-			if(procedureResultMap.containsValue(null)){
+			if(null == procedureResultMap.get("M_SELECT_CLAUSE") || null == procedureResultMap.get("M_TABLE_NAME")){
 				
 				returnMap.put("SYS_RESPONSE", "Unable to Find Solution, Please Tune your Request.");
 				
@@ -68,9 +68,13 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 
 			StringBuffer queryBuffer = new StringBuffer();
 
-			queryBuffer.append("SELECT ").append(procedureResultMap.get("M_SELECT_CLAUSE")).append(" FROM ").append(procedureResultMap.get("M_TABLE_NAME")).append(" WHERE ").append(procedureResultMap.get("M_WHERE_CLAUSE"));
-
-			System.out.println(queryBuffer);
+			queryBuffer.append("SELECT ").append(procedureResultMap.get("M_SELECT_CLAUSE")).append(" FROM ").append(procedureResultMap.get("M_TABLE_NAME"));
+			
+			if(null != procedureResultMap.get("M_TABLE_NAME")){
+				
+				queryBuffer.append(" WHERE ").append(procedureResultMap.get("M_WHERE_CLAUSE"));
+				
+			}
 
 			List<Map<String,Object>> resultList=(List<Map<String, Object>>) abstractHibernateDAOAPI.processQuery(null, null, null, QueryOperationType.SELECT, QueryType.SQL, queryBuffer.toString());
 

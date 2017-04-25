@@ -29,6 +29,13 @@
 	</div>
 </div>
 
+<table id="querySolutionTable" class="table table-striped" style="width: 30%; left: -1%; position: relative;display:none">
+	<thead>
+		<tr class="warning" id="tableHeadId"></tr>
+	</thead>
+	<tbody id="tableBodyId"></tbody>
+</table>
+
 <div class="bg"></div>
 
 <script	src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script> 	

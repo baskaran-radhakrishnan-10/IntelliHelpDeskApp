@@ -16,8 +16,8 @@ body {
 }
 
 body {
-  background: -webkit-linear-gradient(315deg, #044f48, #2a7561);
-  background: linear-gradient(135deg, #044f48, #2a7561);
+  /* background: -webkit-linear-gradient(315deg, #044f48, #2a7561);
+  background: linear-gradient(135deg, #044f48, #2a7561); */
   background-size: cover;
   font-family: sans-serif;
   font-size: 12px;
@@ -47,7 +47,7 @@ Chat
   left: 52%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  width: 599px;
+  width: 90%;
   height: 80vh;
   max-height: 800px;
   z-index: 2;
