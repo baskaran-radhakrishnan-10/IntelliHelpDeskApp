@@ -69,6 +69,9 @@
 </head> 
    
  <body class="sticky-header left-side-collapsed" >
+ 
+ 	<input id="loggedInUserName" name="loggedInUserName" type="hidden" value="<%=session.getAttribute("USER_NAME")%>">
+ 
     <section>
     	<!-- left side start-->
 			<tiles:insertAttribute name="left_menu" />

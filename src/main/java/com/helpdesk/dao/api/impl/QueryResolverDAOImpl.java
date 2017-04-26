@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.equiniti.exception.api.exception.DaoException;
 import com.equiniti.exception.api.faultcode.CommonFaultCode;
@@ -22,6 +25,9 @@ import com.helpdesk.entity.ChatHistory;
 import com.helpdesk.util.ApplicationConstants;
 
 public class QueryResolverDAOImpl implements QueryResolverDAO{
+	
+	@Autowired
+	private HttpSession session;
 
 	private AbstractHibernateDAOAPI<ChatHistory> abstractHibernateDAOAPI;
 
@@ -44,7 +50,7 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 
 		Map<String,Object> inParamMap = new LinkedHashMap<>();
 
-		inParamMap.put("P_STR", restrictionMap.get("userQuery"));
+		inParamMap.put("P_STR", formatUserQuery(restrictionMap.get("userQuery").toString()));
 
 		Map<String,Integer> outParamMap = new LinkedHashMap<>();
 
@@ -70,7 +76,7 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 
 			queryBuffer.append("SELECT ").append(procedureResultMap.get("M_SELECT_CLAUSE")).append(" FROM ").append(procedureResultMap.get("M_TABLE_NAME"));
 			
-			if(null != procedureResultMap.get("M_TABLE_NAME")){
+			if(null != procedureResultMap.get("M_WHERE_CLAUSE")){
 				
 				queryBuffer.append(" WHERE ").append(procedureResultMap.get("M_WHERE_CLAUSE"));
 				
@@ -125,5 +131,26 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 		return returnMap;
 
 	}
-
+	
+	private String formatUserQuery(String userQuery){
+		
+		String lowerCaseUserQuery = userQuery.toLowerCase();
+		
+		if(lowerCaseUserQuery.indexOf(" my ") != -1 || lowerCaseUserQuery.indexOf(" i ") != -1){
+			
+			if(lowerCaseUserQuery.indexOf(" my ") != -1){
+				
+				lowerCaseUserQuery = lowerCaseUserQuery.replace(" my ", new StringBuffer().append(" ").append(session.getAttribute(ApplicationConstants.USER_NAME)).append(" ").toString());
+				
+			}else if(lowerCaseUserQuery.indexOf(" i ") != -1){
+				
+				lowerCaseUserQuery = lowerCaseUserQuery.replace(" i ", new StringBuffer().append(" ").append(session.getAttribute(ApplicationConstants.USER_NAME)).append(" ").toString());
+				
+			}
+			
+		}
+		
+		return lowerCaseUserQuery;
+	}
+	
 }

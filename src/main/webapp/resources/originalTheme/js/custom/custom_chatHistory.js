@@ -15,11 +15,11 @@ $(document).ready(function(){
 
 		if(message.length > 0){
 
-			$('#send_chat_id').prop('disabled',true);
+			//$('#send_chat_id').prop('disabled',true);
 
 			$('<div class="message message-personal">' + message + '<div class="timestamp">' + moment(new Date()).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 
-			$('.message-input').val(null);
+			$('.message-input').val("");
 
 			$('<div class="message loading new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
 
@@ -337,6 +337,8 @@ function getChatHistorySuccess(respose,inputData){
 			messageId = "chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'];
 
 			updateScrollbar();
+			
+			$('.mCSB_container').find('table').show();
 
 		});
 
@@ -381,6 +383,10 @@ function constructTable(sysRes){
 	
 	var systemResponse = JSON.parse(sysRes);
 	
+	console.log("#########################");
+	
+	console.log(systemResponse);
+	
 	if(jQuery.type(systemResponse) === "array"){
 		
 		var keys = null
@@ -406,8 +412,9 @@ function constructTable(sysRes){
 					index++;
 				})
 				$('#querySolutionTable').find('thead').find('#tableHeadId').html(tableHeadHtml);
+				$('#querySolutionTable').css({"width":"100%","left": "0%" , "margin-bottom" : "0px","background-color" : "rgb(222, 222, 222)"});
 				if(keys.length > 1){
-					$('#querySolutionTable').css({"width":"100%","left": "0%" , "margin-bottom" : "0px","background-color" : "rgb(222, 222, 222)","overflow" : "auto"});
+					$('#querySolutionTable').css({"overflow" : "auto"});
 				}
 			}
 			var values = _.values(obj);
@@ -420,7 +427,7 @@ function constructTable(sysRes){
 				if(_.indexOf(indexArray, index) == -1){
 					if(jQuery.type(value) === "number"){
 						var numberStr = value+"";
-						console.log("length :"+numberStr.length);
+						//console.log("length :"+numberStr.length);
 						if(numberStr.length >12){
 							value = moment(new Date(value)).format('DD-MMM-YYYY');
 						}
@@ -435,6 +442,10 @@ function constructTable(sysRes){
 			$('#querySolutionTable').find('tbody').append(tableRowHtml);
 			
 		});
+		
+		console.log($('#querySolutionTable')[0]);
+		
+		console.log("#########################");
 		
 		return $('#querySolutionTable')[0].outerHTML;
 		
