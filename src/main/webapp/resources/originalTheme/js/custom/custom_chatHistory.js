@@ -3,6 +3,10 @@ var $messages = $('.messages-content'),d, h, m,i = 0;
 
 $(document).ready(function(){
 	
+	$( window ).resize(function() {
+		positionMessageTags();
+	});
+	
 	$('#send_chat_id').keypress(function(e) {
 		if(e.which == 13) {
 			$( "#send_chat_id" ).trigger( "click" );
@@ -110,7 +114,7 @@ function sendMessageSuccess(respose){
 		$('#mCSB_1_container').find(noChatHistroyId).remove();
 		
 		if("T" == isJson){
-			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId"  >'+constructTable(sysAnswer)+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId"  >'+constructTable(sysAnswer,serverData['sysAnswerTimeStamp'])+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 		}else{
 			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 		}
@@ -209,14 +213,16 @@ function initChatHistoryPage(){
 				var todayId = "dateSeperatorId"+chatMonth;
 
 				var noChatHistroyId = "noChatHistoryId"+chatMonth;
-
+				
+				
+				
 				if(index == 0){
 					var sterday = moment(chatMonth, 'DD-MMM-YY').subtract(1, 'day');
 					var sterdayId = "oldChatHistoryId"+moment(new Date(sterday)).format('DD-MMM-YY');
-					$('<div class="message message-personal oldChatHistoryId" onclick="" id="'+sterdayId+'" style="background: linear-gradient(120deg, rgb(80, 208, 247), rgb(1, 234, 223));border-radius: 5px;left: -40%;position: relative;cursor: pointer;border-left: 5px solid transparent;">'+moment(new Date(sterday)).format('DD-MMM-YY')+' Messages </div>').appendTo($('.mCSB_container'));
+					$('<div class="message message-personal oldChatHistoryId" onclick="" id="'+sterdayId+'" style="background: linear-gradient(120deg, rgb(80, 208, 247), rgb(1, 234, 223));border-radius: 5px;left: -44%;position: relative;cursor: pointer;">'+moment(new Date(sterday)).format('DD-MMM-YY')+' Messages </div>').appendTo($('.mCSB_container'));
 				}
 
-				$('<div class="message message-personal dateSeperatorId" id="'+todayId+'" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;left: -44%;position: relative;margin: -2px 0;">'+chatMonth+'</div>').appendTo($('.mCSB_container'));
+				$('<div class="message message-personal dateSeperatorId" id="'+todayId+'" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;left: -48%;position: relative;margin: -2px 0;">'+chatMonth+'</div>').appendTo($('.mCSB_container'));
 
 				if(jQuery.type(chatHistoryArray) === "array"){
 					$.each(chatHistoryArray,function(index,chatHistoryObj){
@@ -228,15 +234,18 @@ function initChatHistoryPage(){
 						var gkey = chatHistoryObj['GKEY'];
 						$('<div class="message message-personal" id="'+"chatId" + chatHistoryObj['USER_QUERY_TIME_STAMP']+'">' + userQuery + '<div class="timestamp">' + moment(userQueryTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 						if("T" == isJson){
-							$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId"  >'+constructTable(sysAnswer)+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+							$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId"  >'+constructTable(sysAnswer,chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 						}else{
 							$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 						}
 					})
 				}else{
-					$('<div class="message message-personal" id="'+noChatHistroyId+'" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;left: -25%;"> No Chat History Available For ' +  chatMonth + '</div>').appendTo($('.mCSB_container')).addClass('new');
+					$('<div class="message message-personal noChatHistroyId" id="'+noChatHistroyId+'" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;left: -38%;"> No Chat History Available For ' +  chatMonth + '</div>').appendTo($('.mCSB_container')).addClass('new');
 				}
 				updateScrollbar();
+				
+				positionMessageTags();
+				
 			});
 			
 			updateScorllBarPosition();
@@ -282,9 +291,9 @@ function getChatHistorySuccess(respose,inputData){
 
 		var noChatHistroyId = "noChatHistoryId"+inputData['startDate'];
 
-		$('.mCSB_container').prepend('<div class="message message-personal dateSeperatorId" id="'+todayId+'" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;left: -44%;position: relative;margin: -2px 0;">'+inputData['startDate']+'</div>');
+		$('.mCSB_container').prepend('<div class="message message-personal dateSeperatorId" id="'+todayId+'" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;left: -48%;position: relative;margin: -2px 0;">'+inputData['startDate']+'</div>');
 
-		$('<div class="message message-personal oldChatHistoryId" onclick="" id="'+sterdayId+'" style="background: linear-gradient(120deg, rgb(80, 208, 247), rgb(1, 234, 223));border-radius: 5px;left: -40%;position: relative;cursor: pointer;border-left: 5px solid transparent;">'+moment(new Date(sterday)).format('DD-MMM-YY')+' Messages </div>').insertBefore($('.mCSB_container #'+todayId));
+		$('<div class="message message-personal oldChatHistoryId" onclick="" id="'+sterdayId+'" style="background: linear-gradient(120deg, rgb(80, 208, 247), rgb(1, 234, 223));border-radius: 5px;left: -44%;position: relative;cursor: pointer;">'+moment(new Date(sterday)).format('DD-MMM-YY')+' Messages </div>').insertBefore($('.mCSB_container #'+todayId));
 
 		serverData.length == 0 ? chatHistoryObject[inputData['startDate']] = "NO CHAT HISTORY" : chatHistoryObject[inputData['startDate']] = serverData;
 
@@ -296,9 +305,9 @@ function getChatHistorySuccess(respose,inputData){
 
 		if(serverData.length == 0){
 
-			$('<div class="message message-personal" id="'+noChatHistroyId+'" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;left: -25%;"> No Chat History Available For ' +  inputData['startDate'] + '</div>').insertAfter($('.mCSB_container #'+todayId)).addClass('new');
+			$('<div class="message message-personal" id="'+noChatHistroyId+'" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;left: -38%;"> No Chat History Available For ' +  inputData['startDate'] + '</div>').insertAfter($('.mCSB_container #'+todayId)).addClass('new');
 
-			//$('.mCSB_container').prepend('<div class="message message-personal"> No Chat History Available For ' +  inputData['startDate'] + '</div>').addClass('new');
+			positionMessageTags();
 
 			return false;
 
@@ -329,7 +338,7 @@ function getChatHistorySuccess(respose,inputData){
 			messageId = "chatId" + chatHistoryObj['USER_QUERY_TIME_STAMP'];
 
 			if("T" == isJson){
-				$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" >'+constructTable(sysAnswer)+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').insertAfter($(document).find('.mCSB_container #'+messageId)).addClass('new');
+				$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" >'+constructTable(sysAnswer,chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').insertAfter($(document).find('.mCSB_container #'+messageId)).addClass('new');
 			}else{
 				$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').insertAfter($(document).find('.mCSB_container #'+messageId)).addClass('new');
 			}
@@ -337,6 +346,8 @@ function getChatHistorySuccess(respose,inputData){
 			messageId = "chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'];
 
 			updateScrollbar();
+			
+			positionMessageTags();
 			
 			$('.mCSB_container').find('table').show();
 
@@ -379,13 +390,9 @@ function updateScorllBarPosition(){
 }
 
 
-function constructTable(sysRes){
+function constructTable(sysRes,sysResTime){
 	
 	var systemResponse = JSON.parse(sysRes);
-	
-	console.log("#########################");
-	
-	console.log(systemResponse);
 	
 	if(jQuery.type(systemResponse) === "array"){
 		
@@ -393,9 +400,11 @@ function constructTable(sysRes){
 		
 		var indexArray = [];
 		
-		$('#querySolutionTable').find('thead').find('#tableHeadId').html("");
+		var cloneQuerySolutionTabel=$('#querySolutionTable').clone();
 		
-		$('#querySolutionTable').find('tbody').html("");
+		$(cloneQuerySolutionTabel).find('thead').find('#tableHeadId').html("");
+		
+		$(cloneQuerySolutionTabel).find('tbody').html("");
 		
 		$.each(systemResponse,function(index,obj){
 			
@@ -411,10 +420,10 @@ function constructTable(sysRes){
 					}
 					index++;
 				})
-				$('#querySolutionTable').find('thead').find('#tableHeadId').html(tableHeadHtml);
-				$('#querySolutionTable').css({"width":"100%","left": "0%" , "margin-bottom" : "0px","background-color" : "rgb(222, 222, 222)"});
+				$(cloneQuerySolutionTabel).find('thead').find('#tableHeadId').html(tableHeadHtml);
+				$(cloneQuerySolutionTabel).css({"width":"100%","left": "0%" , "margin-bottom" : "0px","background-color" : "rgb(222, 222, 222)"});
 				if(keys.length > 1){
-					$('#querySolutionTable').css({"overflow" : "auto"});
+					$(cloneQuerySolutionTabel).css({"overflow" : "auto"});
 				}
 			}
 			var values = _.values(obj);
@@ -439,16 +448,33 @@ function constructTable(sysRes){
 			
 			tableRowHtml += '</tr>';
 			
-			$('#querySolutionTable').find('tbody').append(tableRowHtml);
+			$(cloneQuerySolutionTabel).find('tbody').append(tableRowHtml);
 			
 		});
 		
-		console.log($('#querySolutionTable')[0]);
+		var newTableId = $(cloneQuerySolutionTabel).attr("id")+sysResTime;
 		
-		console.log("#########################");
+		$(cloneQuerySolutionTabel).attr("id",newTableId);
 		
-		return $('#querySolutionTable')[0].outerHTML;
+		return $(cloneQuerySolutionTabel)[0].outerHTML;
 		
 	}
+}
+
+function positionMessageTags(){
+	
+	var messageDivWidth = $('.messages').width() / 2 ;
+	
+	var oldChatHistoryDivWidth = $('.oldChatHistoryId').width() / 2;
+	
+	var dateSeperatorDivWidth = $('.dateSeperatorId').width() / 2;
+	
+	var noChatHistroyDivWidth = $('.noChatHistroyId').width() / 2;
+	
+	$('.oldChatHistoryId').css("left",parseInt(-(messageDivWidth-oldChatHistoryDivWidth))+"px");
+	
+	$('.dateSeperatorId').css("left",parseInt(-(messageDivWidth-dateSeperatorDivWidth))+"px");
+	
+	$('.noChatHistroyId').css("left",parseInt(-(messageDivWidth-noChatHistroyDivWidth))+"px");
 }
 
