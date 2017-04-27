@@ -10,5 +10,10 @@
 	<changeSet author="baskaran radhakrishnan" id="insert_tbl_hr_policy_changeset"	runOnChange="true">
 		<loadData file="/WEB-INF/classes/liquibase/tbl_hr_policy_initial_data.csv" tableName="tbl_hr_policy"/>
 	</changeSet>
-	
+	<changeSet author="baskaran radhakrishnan" id="update_tbl_hr_policy_changeset_001"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_HR_POLICY set policy_key_word = 'Acceptable Use' where policy_key_word = 'Acceptable Use Policy'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_HR_POLICY set policy_key_word = 'Whistleblowing' where policy_key_word = 'Whistleblowing policy'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_HR_POLICY set policy_key_word = 'Equiniti Data Protection' where policy_key_word = 'Equiniti Data Protection Policy'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_HR_POLICY set policy_key_word = 'Office Security' where policy_key_word = 'Office Security POlicy'</sql>
+	</changeSet>
 </databaseChangeLog>	
