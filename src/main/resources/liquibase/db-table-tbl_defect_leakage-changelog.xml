@@ -9,5 +9,7 @@
 	<changeSet author="baskaran radhakrishnan" id="insert_tbl_defect_leakage_changeset"	runOnChange="true">
 		<loadData file="/WEB-INF/classes/liquibase/tbl_defect_leakage_initial_data.csv" tableName="tbl_defect_leakage"/>
 	</changeSet>
-	
+	<changeSet author="baskaran radhakrishnan" id="update_tbl_defect_leakage_changeset_001"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_DEFECT_LEAKAGE set leak_month_year = '042017' where leak_month_year = '012017'</sql>
+	</changeSet>
 </databaseChangeLog>	

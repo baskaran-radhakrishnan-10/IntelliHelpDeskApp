@@ -227,7 +227,7 @@ create or replace PROCEDURE PRC_GET_QUERY_DETAILS(P_CHAT_TEXT IN VARCHAR2,
       END LOOP;
           IF match_count > 0 THEN
               match_String_dyna := dynaword1;
-              if(regexp_instr(dynaword1,'(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25)')=1) then
+              if((regexp_instr(dynaword1,'(1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25)')=1) and lookuptype NOT IN('MONTH','YEAR')) then
                 dayval:=to_number(dynaword1,'99');
               end if;
               str_form2 := trim(regexp_replace(str_form2, match_String_dyna, '',1,0,'i'));
