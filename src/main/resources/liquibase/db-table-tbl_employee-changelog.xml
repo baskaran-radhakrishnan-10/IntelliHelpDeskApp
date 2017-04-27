@@ -21,4 +21,8 @@
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO TBL_EMPLOYEE (gkey,EMPLOYEE_ID,EMPLOYEE_NAME,EMP_ROLE,EMP_PROJECT,EMP_SKILLSET,EMP_EMAIL,EMP_MGR_ID,EMP_DOJ,EMP_CTC_PM) VALUES (10,1600,'Annalakshmi Vijayagopal','Senior Test Engineer','Pancredit','Manual,Automation','annalakshmi.vijayagopal@equiniti.com',1500,to_date('19-Sep-2015','DD-Mon-RRRR'),30000)</sql>
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">UPDATE TBL_EMPLOYEE SET EMP_DOJ=to_date('31-Mar-2017','DD-Mon-RRRR') where employee_name = 'Arjun Sundar Rajendran'</sql>
 	</changeSet>
+	<changeSet author="baskaran radhakrishnan" id="insert_tbl_employee_changeset_003s"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">UPDATE TBL_EMPLOYEE SET EMP_DOJ=to_date('07-Nov-2016','DD-Mon-RRRR') where employee_name = 'Arjun Sundar Rajendran'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">UPDATE TBL_EMPLOYEE SET EMP_DOL=to_date('31-Mar-2017','DD-Mon-RRRR') where employee_name = 'Arjun Sundar Rajendran'</sql>
+	</changeSet>
 </databaseChangeLog>

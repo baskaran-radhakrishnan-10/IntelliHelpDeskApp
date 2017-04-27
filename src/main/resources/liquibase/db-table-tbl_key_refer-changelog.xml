@@ -65,4 +65,7 @@
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">UPDATE TBL_KEY_REFER SET FIELDNAME = 'EMPLOYEE_ID,EMPLOYEE_NAME,EMP_PROJECT,EMP_ROLE,TO_DATE(EMP_DOJ,''DD-MM-RRRR'') DOJ,EMP_CTC_PM' WHERE KEYWORD1='CTC' AND KEYWORD2='SALARY'</sql>
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">UPDATE TBL_KEY_REFER SET WHERECOND = ' = to_char(sysdate,''MMYYYY'')' WHERE WHERECOND=' =  = to_char(sysdate,''MMYYYY'')'</sql>
 	</changeSet>
+	<changeSet author="baskaran radhakrishnan" id="update_tbl_key_refer_changeset_005"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set fieldname='TO_DATE(EMP_DOJ,''DD-MM-RRRR'') DOJ' where keyword1='DATE JOINING'</sql>
+	</changeSet>
 </databaseChangeLog>	

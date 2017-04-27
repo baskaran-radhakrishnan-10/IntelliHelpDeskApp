@@ -41,6 +41,7 @@ public class ChatHistoryWebController {
 		LOG.debug("START getChatHistory() Method!!!");
 		Map<String,Object> returnObj=new HashMap<>();
 		try {
+			System.out.println("INPUT :"+inputData);
 			returnObj = chatHistoryController.getChatHistory(inputData);	
 		} catch (ControllerException e) {
 			throw new UIException(e.getFaultCode(), e);
@@ -61,6 +62,7 @@ public class ChatHistoryWebController {
 		LOG.debug("START addChatHistory() Method!!!");
 		Map<String,Object> returnObj=new HashMap<>();
 		try {
+			System.out.println("<---------------->INPUT :"+inputData);
 			returnObj=chatHistoryController.addChatHistory(inputData);
 		} catch (ControllerException e) {
 			throw new UIException(e.getFaultCode(), e);

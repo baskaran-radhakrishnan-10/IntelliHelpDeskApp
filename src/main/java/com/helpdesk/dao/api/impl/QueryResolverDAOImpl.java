@@ -142,11 +142,13 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 		
 		String lowerCaseUserQuery = userQuery.toLowerCase();
 		
-		if(lowerCaseUserQuery.indexOf(" my ") != -1 || lowerCaseUserQuery.indexOf(" i ") != -1){
+		System.out.println("Actual User Query ----->"+lowerCaseUserQuery);
+		
+		if(lowerCaseUserQuery.indexOf("my") != -1 || lowerCaseUserQuery.indexOf(" i ") != -1 ){
 			
-			if(lowerCaseUserQuery.indexOf(" my ") != -1){
+			if(lowerCaseUserQuery.indexOf("my") != -1){
 				
-				lowerCaseUserQuery = lowerCaseUserQuery.replace(" my ", new StringBuffer().append(" ").append(session.getAttribute(ApplicationConstants.USER_NAME)).append(" ").toString());
+				lowerCaseUserQuery = lowerCaseUserQuery.replace("my", new StringBuffer().append(session.getAttribute(ApplicationConstants.USER_NAME)).toString());
 				
 			}else if(lowerCaseUserQuery.indexOf(" i ") != -1){
 				
@@ -155,8 +157,9 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 			}
 			
 		}
-		
+		System.out.println("updated User Query ----->"+lowerCaseUserQuery);
 		return lowerCaseUserQuery;
+
 	}
 	
 }
