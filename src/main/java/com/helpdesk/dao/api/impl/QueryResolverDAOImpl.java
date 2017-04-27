@@ -124,6 +124,12 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 
 				}
 
+			}else{
+				
+				returnMap.put("SYS_RESPONSE", "Data is not available!!!");
+				
+				returnMap.put("IS_JSON", "F");
+				
 			}
 
 		}
