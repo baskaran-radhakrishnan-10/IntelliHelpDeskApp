@@ -29,12 +29,15 @@
 	</div>
 </div>
 
-<table id="querySolutionTable" class="table table-striped" style="width: 30%; left: -1%; position: relative;display:none">
-	<thead>
-		<tr class="warning" id="tableHeadId"></tr>
-	</thead>
-	<tbody id="tableBodyId"></tbody>
-</table>
+<!-- <div id="tableDivId"> -->
+	<table id="querySolutionTable" class="table table-striped">
+		<thead>
+			<tr class="warning" id="tableHeadId"></tr>
+		</thead>
+		<tbody id="tableBodyId"></tbody>
+	</table>
+<!-- </div> -->
+
 
 <div class="bg"></div>
 
