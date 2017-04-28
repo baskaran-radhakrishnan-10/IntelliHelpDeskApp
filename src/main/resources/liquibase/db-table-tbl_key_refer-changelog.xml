@@ -68,4 +68,9 @@
 	<changeSet author="baskaran radhakrishnan" id="update_tbl_key_refer_changeset_005"	runOnChange="true">
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set fieldname='TO_DATE(EMP_DOJ,''DD-MM-RRRR'') DOJ' where keyword1='DATE JOINING'</sql>
 	</changeSet>
+	<changeSet author="baskaran radhakrishnan" id="update_tbl_key_refer_changeset_006"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set keyword4='RESOURCE' where keyword1='EMPLOYEES' and keyword2='RESOURCES' and keyword3='FOLKS'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set fieldname='EMPLOYEE_ID,CL_BALANCE,EL_BALANCE,SL_BALANCE' where fieldname='EMPLOYEE_ID,CL_BALANCE,CL_BALANCE,SL_BALANCE'</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update tbl_key_refer set fieldname = 'SD_PROJECT,TO_DATE(PLANNED_ST_DATE,''DD-MM-RRRR'') PLANNED_ST_DT,TO_DATE(PLANNED_END_DT,''DD-MM-RRRR'') PLANNED_END_DT,TO_DATE(ACTUAL_ST_DATE,''DD-MM-RRRR'') ACTUAL_ST_DT,TO_DATE(ACTUAL_END_DT,''DD-MM-RRRR'') ACTUAL_END_DT,DEVIATION_PER' WHERE fieldname = 'SD_PROJECT,TO_DATE(PLANNED_ST_DATE,''DD-MM-RRRR''),TO_DATE(PLANNED_END_DT,''DD-MM-RRRR''),TO_DATE(ACTUAL_ST_DATE,''DD-MM-RRRR''),TO_DATE(ACTUAL_END_DT,''DD-MM-RRRR''),DEVIATION_PER'</sql>
+	</changeSet>
 </databaseChangeLog>	
