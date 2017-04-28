@@ -8,9 +8,13 @@
 <spring:url value="/resources/originalTheme/js/custom/custom_chat.js"	var="customChatJs" />
 <spring:url value="/resources/originalTheme/js/custom/custom_chatHistory.js"	var="customChatHistoryJs" />
 
+<spring:url value="/resources/originalTheme/img/sys_response.png" var="sys_response_logo" />
+
 <link rel="stylesheet" href="${NormalizeCss}">
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
 <link rel="stylesheet" href="${StyleCss}">
+
+<input type="hidden" id="sys_response_logo_path" value="${sys_response_logo}" />
 
 <div class="chat">
 	<div class="chat-title" style="">

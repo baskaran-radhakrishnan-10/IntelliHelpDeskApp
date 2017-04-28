@@ -146,6 +146,7 @@ Messages
   font-weight: bold;
   line-height: 1.4;
   margin-left: 35px;
+  /* margin-right: 32px; */
   position: relative;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.46);
 }
@@ -176,10 +177,40 @@ Messages
   padding: 0;
   border: 2px solid rgba(255, 255, 255, 0.24);
 }
-.messages .message .avatar img {
+
+.messages .message .avatar_sysres {
+   position: absolute;
+   z-index: 1;
+   bottom: -46px;
+   left: -35px;
+   border-radius: 30px;
+   width: 42px;
+   height: 42px;
+   overflow: hidden;
+   margin: 0;
+   padding: 0;
+   border: 2px solid rgba(255, 255, 255, 0.24);
+}
+
+.messages .message .avatar_userquery {
+     position: absolute;
+   z-index: 1;
+   bottom: -46px;
+   left: 187px;
+   border-radius: 30px;
+   width: 42px;
+   height: 42px;
+   overflow: hidden;
+   margin: 0;
+   padding: 0;
+   border: 2px solid rgba(255, 255, 255, 0.24);
+}
+
+.messages .message .avatar img,.messages .message .avatar_sysres img,.messages .message .avatar_userquery img {
   width: 100%;
   height: auto;
 }
+
 .messages .message.message-personal {
   float: right;
   color: #fff;
