@@ -2,11 +2,11 @@
 var $messages = $('.messages-content'),d, h, m,i = 0;
 
 $(document).ready(function(){
-	
+
 	$( window ).resize(function() {
 		positionMessageTags();
 	});
-	
+
 	$('#send_chat_id').keypress(function(e) {
 		if(e.which == 13) {
 			$( "#send_chat_id" ).trigger( "click" );
@@ -108,19 +108,19 @@ function sendMessageSuccess(respose){
 		var gkey = serverData['rowId'];
 
 		$('.message.loading').remove();
-		
+
 		var noChatHistroyId = '#noChatHistoryId'+moment(sysAnswerTime).format('DD-MMM-YY');
-		
+
 		$('#mCSB_1_container').find(noChatHistroyId).remove();
-		
+
 		if("T" == isJson){
 			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId"  >'+constructTable(sysAnswer,serverData['sysAnswerTimeStamp'])+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 		}else{
-			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+			$('<div class="message new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + formatSysResponse(sysAnswer) + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 		}
 
 		updateScrollbar();
-		
+
 		$('.mCSB_container').find('table').show();
 
 		var chatHistoryObject = {};
@@ -136,15 +136,15 @@ function sendMessageSuccess(respose){
 				chatHistoryObject = sessionStorageObj.getItem("CHAT_HISTORY");
 
 			}
-			
+
 			var innerDayHistoryObject = chatHistoryObject[moment(sysAnswerTime).format('DD-MMM-YY')];
-			
+
 			if(!(jQuery.type(innerDayHistoryObject) === "array")){
-				
+
 				innerDayHistoryObject = [];
-				
+
 			}
-			
+
 			innerDayHistoryObject.push(convertObject(serverData));
 
 			chatHistoryObject[moment(sysAnswerTime).format('DD-MMM-YY')]=innerDayHistoryObject;
@@ -213,9 +213,9 @@ function initChatHistoryPage(){
 				var todayId = "dateSeperatorId"+chatMonth;
 
 				var noChatHistroyId = "noChatHistoryId"+chatMonth;
-				
-				
-				
+
+
+
 				if(index == 0){
 					var sterday = moment(chatMonth, 'DD-MMM-YY').subtract(1, 'day');
 					var sterdayId = "oldChatHistoryId"+moment(new Date(sterday)).format('DD-MMM-YY');
@@ -236,22 +236,22 @@ function initChatHistoryPage(){
 						if("T" == isJson){
 							$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId"  >'+constructTable(sysAnswer,chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 						}else{
-							$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+							$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + formatSysResponse(sysAnswer) + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
 						}
 					})
 				}else{
 					$('<div class="message message-personal noChatHistroyId" id="'+noChatHistroyId+'" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;left: -38%;"> No Chat History Available For ' +  chatMonth + '</div>').appendTo($('.mCSB_container')).addClass('new');
 				}
 				updateScrollbar();
-				
+
 				positionMessageTags();
-				
+
 			});
-			
+
 			updateScorllBarPosition();
-			
+
 			$('.mCSB_container').find('table').show();
-			
+
 		}
 	}
 
@@ -340,21 +340,21 @@ function getChatHistorySuccess(respose,inputData){
 			if("T" == isJson){
 				$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><a id="sysResponseMessageId" >'+constructTable(sysAnswer,chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').insertAfter($(document).find('.mCSB_container #'+messageId)).addClass('new');
 			}else{
-				$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + sysAnswer + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').insertAfter($(document).find('.mCSB_container #'+messageId)).addClass('new');
+				$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure>' + formatSysResponse(sysAnswer) + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').insertAfter($(document).find('.mCSB_container #'+messageId)).addClass('new');
 			}
 
 			messageId = "chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'];
 
 			updateScrollbar();
-			
+
 			positionMessageTags();
-			
+
 			$('.mCSB_container').find('table').show();
 
 		});
 
 		//$(document).find('#dateSeperatorId').css("border-bottom","6px solid rgba(0, 0, 0, 0.3)");
-		
+
 		$('.mCSB_container').find('table').show();
 	}
 }
@@ -391,23 +391,23 @@ function updateScorllBarPosition(){
 
 
 function constructTable(sysRes,sysResTime){
-	
+
 	var systemResponse = JSON.parse(sysRes);
-	
+
 	if(jQuery.type(systemResponse) === "array"){
-		
+
 		var keys = null
-		
+
 		var indexArray = [];
-		
+
 		var cloneQuerySolutionTabel=$('#querySolutionTable').clone();
-		
+
 		$(cloneQuerySolutionTabel).find('thead').find('#tableHeadId').html("");
-		
+
 		$(cloneQuerySolutionTabel).find('tbody').html("");
-		
+
 		$.each(systemResponse,function(index,obj){
-			
+
 			if(null == keys){
 				var index = 1;
 				keys = _.keys(obj);
@@ -427,11 +427,11 @@ function constructTable(sysRes,sysResTime){
 				}
 			}
 			var values = _.values(obj);
-			
+
 			var tableRowHtml = '<tr>';
-			
+
 			var index = 1;
-			
+
 			$.each(values,function(index,value){
 				if(_.indexOf(indexArray, index) == -1){
 					if(jQuery.type(value) === "number"){
@@ -445,36 +445,44 @@ function constructTable(sysRes,sysResTime){
 				}
 				index ++;
 			});
-			
+
 			tableRowHtml += '</tr>';
-			
+
 			$(cloneQuerySolutionTabel).find('tbody').append(tableRowHtml);
-			
+
 		});
-		
+
 		var newTableId = $(cloneQuerySolutionTabel).attr("id")+sysResTime;
-		
+
 		$(cloneQuerySolutionTabel).attr("id",newTableId);
-		
+
 		return $(cloneQuerySolutionTabel)[0].outerHTML;
-		
+
 	}
 }
 
 function positionMessageTags(){
-	
+
 	var messageDivWidth = $('.messages').width() / 2 ;
-	
+
 	var oldChatHistoryDivWidth = $('.oldChatHistoryId').width() / 2;
-	
+
 	var dateSeperatorDivWidth = $('.dateSeperatorId').width() / 2;
-	
+
 	var noChatHistroyDivWidth = $('.noChatHistroyId').width() / 2;
-	
+
 	$('.oldChatHistoryId').css("left",parseInt(-(messageDivWidth-oldChatHistoryDivWidth))+"px");
-	
+
 	$('.dateSeperatorId').css("left",parseInt(-(messageDivWidth-dateSeperatorDivWidth))+"px");
-	
+
 	$('.noChatHistroyId').css("left",parseInt(-(messageDivWidth-noChatHistroyDivWidth))+"px");
 }
+
+function formatSysResponse(sysRes){
+	var returnData=sysRes;
+	if ("Invalid Date" != new Date(parseInt(sysRes))) {
+		returnData=moment(new Date(parseInt(sysRes))).format('DD-MMM-YYYY');
+	}
+	return returnData;
+}	
 
