@@ -156,7 +156,9 @@ public class QueryResolverDAOImpl implements QueryResolverDAO{
 				
 			}else if(lowerCaseUserQuery.indexOf("'") != -1){
 				
-				//lowerCaseUserQuery = lowerCaseUserQuery.replace("my", new StringBuffer().append(session.getAttribute(ApplicationConstants.USER_NAME)).toString());
+				int index = lowerCaseUserQuery.indexOf("'") ;
+				
+				lowerCaseUserQuery = lowerCaseUserQuery.replace(lowerCaseUserQuery.substring(index, index+2), "");
 				
 			}
 			
