@@ -8,31 +8,25 @@ $(document).ready(function(){
 	});
 
 	$('#send_chat_id').keypress(function(e) {
+		
 		if(e.which == 13) {
-			$( "#send_chat_id" ).trigger( "click" );
+			
+			var message=$('.message-input').val().trim();
+
+			if(message.length > 0){
+
+				$('<div class="message message-personal">' + message + '<div class="timestamp">' + moment(new Date()).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+
+				$('.message-input').val("");
+
+				$('<div class="message loading new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+
+				updateScrollbar();
+
+				sendMessage(message);
+
+			}
 		}
-	});
-
-	$('#send_chat_id').on("click",function(event){
-
-		var message=$('.message-input').val();
-
-		if(message.length > 0){
-
-			//$('#send_chat_id').prop('disabled',true);
-
-			$('<div class="message message-personal">' + message + '<div class="timestamp">' + moment(new Date()).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
-
-			$('.message-input').val("");
-
-			$('<div class="message loading new"><figure class="avatar"><img src="http://s3-us-west-2.amazonaws.com/s.cdpn.io/156381/profile/profile-80_4.jpg" /></figure><span></span></div>').appendTo($('.mCSB_container'));
-
-			updateScrollbar();
-
-			sendMessage(message);
-
-		}
-
 	});
 
 	$('.messages-content').mCustomScrollbar({
@@ -67,6 +61,7 @@ $(document).ready(function(){
 	});*/
 
 	$(document).on("click",".oldChatHistoryId",function(event){
+		
 		console.log($(document).find('.dateSeperatorId').text());
 
 		var sterday = moment($(document).find('.dateSeperatorId').text().trim(), 'DD-MMM-YY').subtract(1, 'day');
@@ -433,9 +428,6 @@ function constructTable(sysRes,sysResTime){
 				})
 				$(cloneQuerySolutionTabel).find('thead').find('#tableHeadId').html(tableHeadHtml);
 				$(cloneQuerySolutionTabel).css({"width":"100%","left": "0%" , "margin-bottom" : "0px","background-color" : "rgb(222, 222, 222)"});
-				if(keys.length > 1){
-					$(cloneQuerySolutionTabel).css({"overflow" : "auto"});
-				}
 			}
 			var values = _.values(obj);
 
