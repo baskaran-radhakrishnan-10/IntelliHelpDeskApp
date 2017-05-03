@@ -31,5 +31,6 @@
     
     <include file="db-table-tbl_schedule_deviation-changelog.xml" relativeToChangelogFile="true" />
     
+    <include file="db-table-tbl_word_replace-changelog.xml" relativeToChangelogFile="true" />
     
 </databaseChangeLog>

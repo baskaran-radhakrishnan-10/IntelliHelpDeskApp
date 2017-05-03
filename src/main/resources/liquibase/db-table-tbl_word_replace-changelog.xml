@@ -3,22 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd" >
 	
-	<changeSet author="baskaran radhakrishnan" id="alter_tbl_word_replace_changeset"	runOnChange="true">
+	<changeSet author="baskaran radhakrishnan" id="alter_tbl_word_replace_changeset" runOnChange="true">
 	</changeSet>
 	
-	<changeSet author="baskaran radhakrishnan" id="insert_tbl_word_replace_changeset"	runOnChange="true">
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(1,'THIS MONTH','0 MONTH')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(2,'CURRENT MONTH','0 MONTH')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(3,'LAST MONTH','1 MONTH')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(4,'PREVIOUS MONTH','1 MONTH')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(5,'THIS YEAR','0 YEAR')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(6,'CURRENT YEAR','0 YEAR')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(7,'LAST YEAR','1 YEAR')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(8,'PREVIOUS YEAR','1 YEAR')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(9,'EMAIL IDS','EMAILS')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(10,'EMAIL ID','EMAIL')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(11,'TEAM LEADS','TEAM LEAD')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(12,'ABOVE','>')</sql>
-		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">INSERT INTO tbl_word_replace (gkey,act_string,replace_string) VALUES(13',BELOW','<')</sql>
+	<changeSet author="baskaran radhakrishnan" id="insert_tbl_word_replace_changeset" runOnChange="true">
+		<loadData file="/WEB-INF/classes/liquibase/tbl_word_replace_initial_data.csv" tableName="tbl_word_replace"/>
 	</changeSet>
 </databaseChangeLog>	
