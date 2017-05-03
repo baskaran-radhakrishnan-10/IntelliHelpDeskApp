@@ -31,34 +31,10 @@ $(document).ready(function(){
 
 	$('.messages-content').mCustomScrollbar({
 		callbacks:{
-			onTotalScrollBack :function(){
-				//console.log("Scrolling started...");
-			},
-			onScroll :function(){
-				//console.log("scroll event completes");
-			}
+			onTotalScrollBack :function(){},
+			onScroll :function(){}
 		}
 	});
-
-	/*$(document).on("click",'#sysResponseMessageId',function(event){
-		console.log("anchor tag clicked!!!");
-		//event.preventDefault();
-		console.log($(this));
-
-		console.log("Scroll Top Content "+$('#mCSB_1_container').css('top'));
-
-		console.log("Scroll Top Bar "+$('#mCSB_1_dragger_vertical').css('top'));
-
-		if(null != sessionStorageObj){
-			sessionStorageObj.setItem("SCROLL_TOP_POSITION_DIV",$(document).find('#mCSB_1_container').css('top'));
-			sessionStorageObj.setItem("SCROLL_TOP_POSITION_BAR",$(document).find('#mCSB_1_dragger_vertical').css('top'));
-		}
-
-		var href=$(this)[0]['href'];
-
-		console.log("href :"+href);
-
-	});*/
 
 	$(document).on("click",".oldChatHistoryId",function(event){
 		
@@ -483,6 +459,9 @@ function positionMessageTags(){
 
 function formatSysResponse(sysRes){
 	var returnData=sysRes;
+	if(jQuery.type(sysRes) === "number"){
+		sysRes = sysRes+"";
+	}
 	if (null != sysRes && sysRes.length > 11 && "Invalid Date" != new Date(parseInt(sysRes))) {
 		returnData=moment(new Date(parseInt(sysRes))).format('DD-MMM-YYYY');
 	}

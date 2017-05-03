@@ -29,17 +29,23 @@ function ChatHistoryOperation(){
 	
 	var $messages = $('.messages-content'),d, h, m,i = 0;
 	
-	var oldHistoryMessageTag = '<div class="message message-personal oldChatHistoryId" id="{STERDAY_ID}" style="background: linear-gradient(120deg, rgb(80, 208, 247), rgb(1, 234, 223));border-radius: 5px;position: relative;cursor: pointer;">{OLD_DATE_MESSAGE}</div>';
+	this.oldHistoryMessageTag = '<div class="message message-personal oldChatHistoryId" id="{STERDAY_ID}" style="background: linear-gradient(120deg, rgb(80, 208, 247), rgb(1, 234, 223));border-radius: 5px;position: relative;cursor: pointer;">{OLD_DATE_MESSAGE}</div>';
 	
-	var actualDateMessageTag = '<div class="message message-personal dateSeperatorId" id="{TODAY_ID}" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;position: relative;margin: -2px 0;">{ACTUAL_DATE}</div>';
+	this.actualDateMessageTag = '<div class="message message-personal dateSeperatorId" id="{TODAY_ID}" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;position: relative;margin: -2px 0;">{ACTUAL_DATE}</div>';
 	
-	var userQueryMessageTag = '<div class="message message-personal userQueryId" id="{USER_QUERY_ID}">{USER_QUERY}<div class="timestamp">{USER_QUERY_TIME}</div></div>';
+	this.userQueryMessageTag = '<div class="message message-personal userQueryId" id="{USER_QUERY_ID}">{USER_QUERY}<div class="timestamp">{USER_QUERY_TIME}</div></div>';
 	
-	var systemResponseMessageTag = '<div class="message new" id="{SYS_RESPONSE_ID}"><figure class="avatar_sysres"><img src="{SYS_LOGO_PATH}" /></figure><a>{SYSTEM_RESPONSE_MESSAGE}</a><div class="timestamp">{SYS_RESPONSE_TIME}</div></div>';
+	this.systemResponseMessageTag = '<div class="message new" id="{SYS_RESPONSE_ID}"><figure class="avatar_sysres"><img src="{SYS_LOGO_PATH}" /></figure><a>{SYSTEM_RESPONSE_MESSAGE}</a><div class="timestamp">{SYS_RESPONSE_TIME}</div></div>';
 	
-	var systemResponseTableMessageTag = '<div class="message new tableDiv" id="{SYS_RESPONSE_ID}"><figure class="avatar_sysres"><img src="{SYS_LOGO_PATH}" /></figure><a>{SYSTEM_RESPONSE_MESSAGE}</a><div class="timestamp">{SYS_RESPONSE_TIME}</div></div>';
+	this.systemResponseTableMessageTag = '<div class="message new tableDiv" id="{SYS_RESPONSE_ID}"><figure class="avatar_sysres"><img src="{SYS_LOGO_PATH}" /></figure><a>{SYSTEM_RESPONSE_MESSAGE}</a><div class="timestamp">{SYS_RESPONSE_TIME}</div></div>';
 	
-	var noChatHistoryMessageTag = '<div class="message message-personal" id="{NO_CHAT_HISORY_ID}" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;">{NO_CHAT_HISTORY_MESSAGE}</div>';
+	this.noChatHistoryMessageTag = '<div class="message message-personal" id="{NO_CHAT_HISORY_ID}" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;">{NO_CHAT_HISTORY_MESSAGE}</div>';
+	
+	this.onDocumentLoad=function(){
+		
+		ChatHistoryOperation.prototype.onDocumentLoad();
+		
+	};
 	
 }
 
@@ -215,12 +221,20 @@ ChatHistoryOperation.prototype.initChatHistoryPage = function (){
 					
 					var tagMessage = moment(new Date(sterday)).format('DD-MMM-YY')+' Messages';
 					
-					$('<div class="message message-personal oldChatHistoryId" onclick="" id="'+sterdayId+'" style="background: linear-gradient(120deg, rgb(80, 208, 247), rgb(1, 234, 223));border-radius: 5px;left: -44%;position: relative;cursor: pointer;">'+moment(new Date(sterday)).format('DD-MMM-YY')+' Messages </div>').appendTo($('.mCSB_container'));
+					var oldChatHistoryTag=chatHistoryObject.oldHistoryMessageTag;
+					
+					oldChatHistoryTag = oldChatHistoryTag.replace("{STERDAY_ID}",sterdayId).replace("{OLD_DATE_MESSAGE}",tagMessage);
+					
+					$(oldChatHistoryTag).appendTo($('.mCSB_container'));
 				
 				}
-
-				$('<div class="message message-personal dateSeperatorId" id="'+todayId+'" style="background: linear-gradient(120deg, #495049, #495049);border-radius: 5px 5px 5px 5px;left: -48%;position: relative;margin: -2px 0;">'+chatMonth+'</div>').appendTo($('.mCSB_container'));
-
+				
+				var actualDateMessageTag = chatHistoryObject.actualDateMessageTag;
+				
+				actualDateMessageTag = actualDateMessageTag.replace("{TODAY_ID}",todayId).replace("{ACTUAL_DATE}",chatMonth);
+				
+				$(actualDateMessageTag).appendTo($('.mCSB_container'));
+				
 				if(jQuery.type(chatHistoryArray) === "array"){
 					
 					$.each(chatHistoryArray,function(index,chatHistoryObj){
@@ -237,18 +251,42 @@ ChatHistoryOperation.prototype.initChatHistoryPage = function (){
 						
 						var gkey = chatHistoryObj['GKEY'];
 						
-						$('<div class="message message-personal" id="'+"chatId" + chatHistoryObj['USER_QUERY_TIME_STAMP']+'">' + userQuery + '<div class="timestamp">' + moment(userQueryTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+						var userQueryMessageTag = chatHistoryObject.userQueryMessageTag;
+						
+						userQueryMessageTag = userQueryMessageTag.replace("{USER_QUERY_ID}","chatId" + chatHistoryObj['USER_QUERY_TIME_STAMP']).replace("{USER_QUERY}",userQuery).replace("{USER_QUERY_TIME}",moment(userQueryTime).format('hh:mm:ss'));
+						
+						$(userQueryMessageTag).appendTo($('.mCSB_container'));
 						
 						if("T" == isJson){
-							$('<div class="message new tableDiv" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar_sysres"><img src="'+$('#sys_response_logo_path').val()+'" /></figure><a id="sysResponseMessageId"  >'+constructTable(sysAnswer,chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])+'</a><div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+							
+							var systemResponseTableMessageTag = chatHistoryObject.systemResponseTableMessageTag;
+							
+							systemResponseTableMessageTag = systemResponseTableMessageTag.replace("{SYS_RESPONSE_ID}","chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])
+													   .replace("{SYS_LOGO_PATH}",$('#sys_response_logo_path').val()).replace("{SYSTEM_RESPONSE_MESSAGE}",constructTable(sysAnswer,chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])).replace("{SYS_RESPONSE_TIME}",moment(sysAnswerTime).format('hh:mm:ss'));
+							
+							$(systemResponseTableMessageTag).appendTo($('.mCSB_container'));
+							
 						}else{
-							$('<div class="message new" id="'+"chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP']+'"><figure class="avatar_sysres"><img src="'+$('#sys_response_logo_path').val()+'" /></figure>' + formatSysResponse(sysAnswer) + '<div class="timestamp">' + moment(sysAnswerTime).format('hh:mm:ss') +'</div></div>').appendTo($('.mCSB_container')).addClass('new');
+							
+							var systemResponseMessageTag = chatHistoryObject.systemResponseMessageTag;
+							
+							systemResponseMessageTag = systemResponseMessageTag.replace("{SYS_RESPONSE_ID}","chatId" + chatHistoryObj['SYSTEM_ANSWER_TIME_STAMP'])
+													   .replace("{SYS_LOGO_PATH}",$('#sys_response_logo_path').val()).replace("{SYSTEM_RESPONSE_MESSAGE}",formatSysResponse(sysAnswer)).replace("{SYS_RESPONSE_TIME}",moment(sysAnswerTime).format('hh:mm:ss'));
+							
+							$(systemResponseMessageTag).appendTo($('.mCSB_container'));
+							
 						}
 						
 					});
 					
 				}else{
-					$('<div class="message message-personal noChatHistroyId" id="'+noChatHistroyId+'" style="background: linear-gradient(120deg, #f5ee0e, #f3ec1c);border-radius: 0px 0px 0px 0px;color: #e82626;left: -38%;"> No Chat History Available For ' +  chatMonth + '</div>').appendTo($('.mCSB_container')).addClass('new');
+					
+					var noChatHistoryMessageTag = chatHistoryObject.noChatHistoryMessageTag;
+					
+					noChatHistoryMessageTag = noChatHistoryMessageTag.replace("{NO_CHAT_HISORY_ID}",noChatHistroyId).replace("{NO_CHAT_HISTORY_MESSAGE}",'No Chat History Available For ' +  chatMonth);
+					
+					$(noChatHistoryMessageTag).appendTo($('.mCSB_container'));
+					
 				}
 				
 				updateScrollbar();
