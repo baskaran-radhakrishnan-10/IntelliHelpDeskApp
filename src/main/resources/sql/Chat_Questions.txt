@@ -11,3 +11,5 @@ ping me list of java and sql resources
 provide me banding of .net resources
 tell me pancredit clients
 Tell me risk items in Live System
+
+03-May-17	11.06	13mins	07.19	

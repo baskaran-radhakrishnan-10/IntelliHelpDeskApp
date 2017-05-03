@@ -12,4 +12,8 @@
 	<changeSet author="baskaran radhakrishnan" id="update_tbl_defect_leakage_changeset_001"	runOnChange="true">
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_DEFECT_LEAKAGE set leak_month_year = '042017' where leak_month_year = '012017'</sql>
 	</changeSet>
+	<changeSet author="baskaran radhakrishnan" id="update_tbl_defect_leakage_changeset_002"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into TBL_DEFECT_LEAKAGE (GKEY,DL_ID,DL_PROJECT,FAT_BUG_CNT,UAT_BUG_CNT,LEAKAGE_PER,LEAK_MONTH_YEAR)values (4,4,'HRP',10,5,10,052017)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into TBL_DEFECT_LEAKAGE (GKEY,DL_ID,DL_PROJECT,FAT_BUG_CNT,UAT_BUG_CNT,LEAKAGE_PER,LEAK_MONTH_YEAR)values (5,5,'PDC',10,5,10,012017)</sql>
+	</changeSet>
 </databaseChangeLog>	

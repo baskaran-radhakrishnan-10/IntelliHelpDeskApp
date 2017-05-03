@@ -12,4 +12,8 @@
 	<changeSet author="baskaran radhakrishnan" id="update_tbl_schedule_deviation_changeset_001"	runOnChange="true">
 		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">update TBL_SCHEDULE_DEVIATION set sd_month_year = '042017' where sd_month_year = '022017'</sql>
 	</changeSet>
+	<changeSet author="baskaran radhakrishnan" id="update_tbl_schedule_deviation_changeset_002"	runOnChange="true">
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into TBL_SCHEDULE_DEVIATION (GKEY,SD_ID,SD_PROJECT,PLANNED_ST_DATE,PLANNED_END_DT,ACTUAL_ST_DATE,ACTUAL_END_DT,DEVIATION_PER,SD_MONTH_YEAR) values (3,3,'Charter UK','03-Mar-2017','31-Mar-2017','03-Mar-2017','05-Apr-2017',12,042017)</sql>
+		<sql endDelimiter="\nGO" splitStatements="true" stripComments="true">insert into TBL_SCHEDULE_DEVIATION (GKEY,SD_ID,SD_PROJECT,PLANNED_ST_DATE,PLANNED_END_DT,ACTUAL_ST_DATE,ACTUAL_END_DT,DEVIATION_PER,SD_MONTH_YEAR) values (4,4,'PDC','01-Feb-2016','27-Feb-2016','10-Feb-2017','12-Mar-2016',4,032017)</sql>
+	</changeSet>
 </databaseChangeLog>	
