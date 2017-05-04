@@ -455,6 +455,7 @@ function positionMessageTags(){
 	$('.dateSeperatorId').css("left",parseInt(-(messageDivWidth-dateSeperatorDivWidth))+"px");
 
 	$('.noChatHistroyId').css("left",parseInt(-(messageDivWidth-noChatHistroyDivWidth))+"px");
+	
 }
 
 function formatSysResponse(sysRes){
