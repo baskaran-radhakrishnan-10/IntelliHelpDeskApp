@@ -101,11 +101,11 @@
                 <suffix value=".yyyy-MM-dd"/>
                 <append value="true"/>
             </periodic-rotating-file-handler>
-            <periodic-rotating-file-handler name="QA-APP" autoflush="true">
+            <periodic-rotating-file-handler name="HELD-DESK-APP" autoflush="true">
                 <formatter>
                     <named-formatter name="PATTERN"/>
                 </formatter>
-                <file relative-to="jboss.server.log.dir" path="qa-application.log"/>
+                <file relative-to="jboss.server.log.dir" path="help-desk-application.log"/>
                 <suffix value=".yyyy-MM-dd"/>
                 <append value="true"/>
             </periodic-rotating-file-handler>
@@ -117,10 +117,10 @@
                 <suffix value=".yyyy-MM-dd"/>
                 <append value="true"/>
             </periodic-rotating-file-handler>
-            <logger category="com.equiniti.qa_report" use-parent-handlers="false">
+            <logger category="com.helpdesk" use-parent-handlers="false">
                 <level name="DEBUG"/>
                 <handlers>
-                    <handler name="QA-APP"/>
+                    <handler name="HELD-DESK-APP"/>
                 </handlers>
             </logger>
             <logger category="com.arjuna">

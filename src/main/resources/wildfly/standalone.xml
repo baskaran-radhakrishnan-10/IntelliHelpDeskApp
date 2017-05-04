@@ -98,6 +98,28 @@
                 <suffix value=".yyyy-MM-dd"/>
                 <append value="true"/>
             </periodic-rotating-file-handler>
+            <periodic-rotating-file-handler name="HELD-DESK-APP" autoflush="true">
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="help-desk-application.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <periodic-rotating-file-handler name="HIBERNATE" autoflush="true">
+                <formatter>
+                    <named-formatter name="PATTERN"/>
+                </formatter>
+                <file relative-to="jboss.server.log.dir" path="hibernate.log"/>
+                <suffix value=".yyyy-MM-dd"/>
+                <append value="true"/>
+            </periodic-rotating-file-handler>
+            <logger category="com.helpdesk" use-parent-handlers="false">
+                <level name="DEBUG"/>
+                <handlers>
+                    <handler name="HELD-DESK-APP"/>
+                </handlers>
+            </logger>
             <logger category="com.arjuna">
                 <level name="WARN"/>
             </logger>
@@ -124,7 +146,7 @@
                 </handlers>
             </root-logger>
             <formatter name="PATTERN">
-                <pattern-formatter pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
+                <pattern-formatter pattern="%z{level}%d{dd/MM/yyyy HH:mm:ss,SSS} %-5p [%c] [%L] %s%E%n"/>
             </formatter>
             <formatter name="COLOR-PATTERN">
                 <pattern-formatter pattern="%K{level}%d{HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"/>
